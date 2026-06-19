@@ -279,6 +279,7 @@ export async function initHomeAnimations() {
     ];
 
     const layoutChips = function () {
+      if (window.innerWidth <= 820) return; // Skip layout calculations on mobile screens
       if (!overlay || !linesSvg || !globeEl) return;
       overlay.querySelectorAll('.gr-country').forEach(n => n.remove());
       linesSvg.querySelectorAll('path.gr-route').forEach(n => n.remove());
@@ -314,17 +315,17 @@ export async function initHomeAnimations() {
 
   /* ── 3. Pinned globe scene timeline ── */
   if (document.getElementById('global-reach')) {
-    if (reduced) {
+    const isMobile = window.innerWidth <= 820;
+    if (reduced || isMobile) {
       spinning = true;
       gsap.set(['#grEyebrow','#grTitle','#grSub'], { opacity: 1 });
-      gsap.set('#grGlobe', { x: 0 });
-      document.querySelectorAll('.gr-country').forEach(n => n.style.opacity = 1);
+      gsap.set('#grGlobe, #grOverlay', { x: 0, y: 0, scale: 1, opacity: 1 });
+      document.querySelectorAll('.gr-country').forEach(n => n.style.opacity = 0);
       gsap.set('.gr-card', { opacity: 1, y: 0, scale: 1 });
     } else {
-      const isMobile = window.innerWidth <= 820;
-      const startX = isMobile ? '12vw' : '28vw';
-      const endX = isMobile ? '-12vw' : '-22vw';
-      const entryX = isMobile ? '80vw' : '85vw';
+      const startX = '28vw';
+      const endX = '-22vw';
+      const entryX = '85vw';
 
       gsap.set('#grGlobe, #grOverlay', { x: entryX, scale: 1, opacity: 0, filter: 'blur(0px)' });
       gsap.set('.gr-country', { opacity: 0, y: 12, scale: 0.92 });
