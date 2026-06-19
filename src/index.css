@@ -2854,19 +2854,47 @@ h1, h2, h3, h4, h5,
     align-items: center !important;
     width: 100% !important;
   }
-  #global-reach .gr-stage {
+  #global-reach .gr-eyebrow {
     position: relative !important;
-    height: auto !important;
-    margin: 2.2rem 0 !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.6rem !important;
+    white-space: nowrap !important;
+    opacity: 1 !important;
+    text-align: center !important;
+    display: inline-block !important;
+    width: auto !important;
+    max-width: none !important;
   }
-  #global-reach .gr-globe-wrap {
-    width: clamp(260px, 80vw, 360px) !important;
-    aspect-ratio: 1 !important;
+  #global-reach .gr-eyebrow::before, #global-reach .gr-eyebrow::after {
+    width: 16px !important;
+    margin: 0 0.5rem !important;
   }
   #global-reach .gr-title {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
     white-space: normal !important;
     width: min(620px, 92vw) !important;
     text-align: center !important;
+    margin-bottom: 1.5rem !important;
+    opacity: 1 !important;
+  }
+  #global-reach .gr-stage {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 2rem 0 !important;
+  }
+  #global-reach .gr-globe-wrap {
+    width: min(75vw, 320px) !important;
+    height: min(75vw, 320px) !important;
+    position: relative !important;
+    margin: 0 auto !important;
   }
   #global-reach .gr-cards {
     position: relative !important;
@@ -2886,9 +2914,6 @@ h1, h2, h3, h4, h5,
     opacity: 1 !important;
     transform: none !important;
     padding: 1.5rem 1.3rem !important;
-  }
-  #global-reach .gr-country {
-    display: none !important;
   }
   #global-reach svg.gr-lines {
     display: none !important;
@@ -2935,6 +2960,7 @@ h1, h2, h3, h4, h5,
 #global-reach .gr-country {
   display: block !important;
   visibility: visible !important;
+  opacity: 1 !important;
 }
 #global-reach .gr-title,
 #global-reach .gr-eyebrow,

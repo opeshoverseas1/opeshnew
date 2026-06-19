@@ -39,6 +39,7 @@ let homeScrollTriggers = [];
 let homeResizeListeners = [];
 let homeObservers = [];
 let themeChangedListener = null;
+let activeLayoutChips = null;
 
 
 // Page reveal observers
@@ -279,7 +280,6 @@ export async function initHomeAnimations() {
     ];
 
     const layoutChips = function () {
-      if (window.innerWidth <= 820) return; // Skip layout calculations on mobile screens
       if (!overlay || !linesSvg || !globeEl) return;
       overlay.querySelectorAll('.gr-country').forEach(n => n.remove());
       linesSvg.querySelectorAll('path.gr-route').forEach(n => n.remove());
@@ -305,12 +305,22 @@ export async function initHomeAnimations() {
       });
     };
 
+    activeLayoutChips = layoutChips;
     layoutChips();
     const chipsResize = function () {
       layoutChips();
     };
     window.addEventListener('resize', chipsResize);
     homeResizeListeners.push({ event: 'resize', fn: chipsResize });
+
+    // Use ResizeObserver to dynamically position chips when globe size changes
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver(() => {
+        layoutChips();
+      });
+      ro.observe(globeEl);
+      homeObservers.push({ observer: ro, el: globeEl });
+    }
   }
 
   /* ── 3. Pinned globe scene timeline ── */
@@ -320,7 +330,7 @@ export async function initHomeAnimations() {
       spinning = true;
       gsap.set(['#grEyebrow','#grTitle','#grSub'], { opacity: 1 });
       gsap.set('#grGlobe, #grOverlay', { x: 0, y: 0, scale: 1, opacity: 1 });
-      document.querySelectorAll('.gr-country').forEach(n => n.style.opacity = 0);
+      document.querySelectorAll('.gr-country').forEach(n => n.style.opacity = 1);
       gsap.set('.gr-card', { opacity: 1, y: 0, scale: 1 });
     } else {
       const startX = '28vw';
@@ -544,14 +554,14 @@ export async function initGlobeAnimation() {
   camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
   camera.position.z = 230;
 
-  scene.add(new THREE.AmbientLight(isLight ? 0xeef7ff : 0xd7e9ff, isLight ? 1.25 : 1.05));
-  scene.add(new THREE.HemisphereLight(isLight ? 0xffffff : 0xf3fbff, isLight ? 0xd0eaff : 0x172a42, isLight ? 1.75 : 1.55));
+  scene.add(new THREE.AmbientLight(isLight ? 0xeef7ff : 0xd7e9ff, isLight ? 2.0 : 1.05));
+  scene.add(new THREE.HemisphereLight(isLight ? 0xffffff : 0xf3fbff, isLight ? 0xd0eaff : 0x172a42, isLight ? 2.5 : 1.55));
   
-  const key = new THREE.DirectionalLight(0xffffff, isLight ? 2.5 : 2.9);
+  const key = new THREE.DirectionalLight(0xffffff, isLight ? 3.5 : 2.9);
   key.position.set(2.4, 1.7, 3.2); 
   scene.add(key);
 
-  const rim = new THREE.DirectionalLight(isLight ? 0xd0eaff : 0xf0d58a, isLight ? 1.25 : 1.05);
+  const rim = new THREE.DirectionalLight(isLight ? 0xd0eaff : 0xf0d58a, isLight ? 2.0 : 1.05);
   rim.position.set(-2.5, 0.4, 1.4); 
   scene.add(rim);
 
@@ -603,8 +613,8 @@ export async function initGlobeAnimation() {
   const gm = globe.globeMaterial();
   if (gm) {
     gm.color = new THREE.Color(isLight ? '#ffffff' : '#0b1526');
-    gm.emissive = new THREE.Color(isLight ? '#000000' : '#050c18');
-    gm.emissiveIntensity = isLight ? 0.0 : 0.8;
+    gm.emissive = new THREE.Color(isLight ? '#5fa9ff' : '#050c18');
+    gm.emissiveIntensity = isLight ? 0.85 : 0.8;
     gm.roughness = isLight ? 0.7 : 0.8;
     gm.metalness = isLight ? 0.0 : 0.15;
     gm.bumpScale = isLight ? 1.0 : 1.0;
@@ -661,6 +671,16 @@ export async function initGlobeAnimation() {
   globe.rotation.y = baseRotationY;
   spinning = true;
 
+  if (activeLayoutChips) {
+    activeLayoutChips();
+  }
+  setTimeout(() => {
+    if (activeLayoutChips) activeLayoutChips();
+  }, 100);
+  setTimeout(() => {
+    if (activeLayoutChips) activeLayoutChips();
+  }, 500);
+
   // Window resize handler
   const resizeGlobe = function () {
     if (!renderer || !mount) return;
@@ -692,8 +712,8 @@ export function handleThemeChangeInGlobe() {
   const gm = globe.globeMaterial();
   if (gm) {
     gm.color.set(isLight ? '#ffffff' : '#0b1526');
-    gm.emissive.set(isLight ? '#000000' : '#050c18');
-    gm.emissiveIntensity = isLight ? 0.0 : 0.8;
+    gm.emissive.set(isLight ? '#5fa9ff' : '#050c18');
+    gm.emissiveIntensity = isLight ? 0.85 : 0.8;
     gm.roughness = isLight ? 0.7 : 0.8;
     gm.metalness = isLight ? 0.0 : 0.15;
     gm.bumpScale = isLight ? 1.0 : 1.0;
@@ -717,22 +737,22 @@ export function handleThemeChangeInGlobe() {
   globe.pointsData(points);
   
   globe.ringColor(() => t => isLight ? `rgba(0,122,204,${1 - t})` : `rgba(201,161,74,${1 - t})`);
-
+  
   // Update light colors in scene
   scene.traverse(node => {
     if (node instanceof THREE.AmbientLight) {
       node.color.set(isLight ? 0xeef7ff : 0xd7e9ff);
-      node.intensity = isLight ? 1.25 : 1.05;
+      node.intensity = isLight ? 2.0 : 1.05;
     } else if (node instanceof THREE.HemisphereLight) {
       node.color.set(isLight ? 0xffffff : 0xf3fbff);
       node.groundColor.set(isLight ? 0xd0eaff : 0x172a42);
-      node.intensity = isLight ? 1.75 : 1.55;
+      node.intensity = isLight ? 2.5 : 1.55;
     } else if (node instanceof THREE.DirectionalLight) {
       if (node.position.x < 0) { // Rim light
         node.color.set(isLight ? 0xd0eaff : 0xf0d58a);
-        node.intensity = isLight ? 1.25 : 1.05;
+        node.intensity = isLight ? 2.0 : 1.05;
       } else { // Key light
-        node.intensity = isLight ? 2.5 : 2.9;
+        node.intensity = isLight ? 3.5 : 2.9;
       }
     } else if (node instanceof THREE.Mesh && node.geometry instanceof THREE.SphereGeometry && node.geometry.parameters.radius === 116) {
       // Halo mesh
@@ -763,6 +783,7 @@ export function cleanupHomeAnimations() {
   camera = null;
   globe = null;
   globeState.autoRotationY = 0;
+  activeLayoutChips = null;
 
   // 2. Kill ScrollTriggers
   homeScrollTriggers.forEach(st => {
