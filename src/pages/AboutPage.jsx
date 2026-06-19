@@ -158,10 +158,10 @@ export default function AboutPage() {
               <span className="leader-initial">OS</span>
             </div>
             <div className="leader-info">
-              <h3>Mr Om Prakash Sharma</h3>
+              <h3>Mr Pavitra Sharma</h3>
               <span className="leader-title">Founder &amp; Managing Director</span>
               <p className="leader-bio">
-                With extensive experience in global supply chain management, agricultural exports, and corporate trade compliance, Mr Om Prakash Sharma founded Opésh Overseas to establish a benchmark for Indian B2B export operations, bringing scientific testing, modern packaging, and clean documentation to traditional sectors.
+                Believing that Indian businesses deserve a stronger presence on the global stage, Mr Pavitra Sharma founded Opésh Overseas with the ambition of building a world-class export enterprise. The company is guided by principles of quality, professionalism, and enduring client relationships, serving international markets with confidence and integrity.
               </p>
             </div>
           </div>
