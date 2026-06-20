@@ -54,7 +54,7 @@ export default function HomePage() {
       <section id="hero" aria-label="Hero — Opésh Overseas export house">
         <div className="hero-video-wrap" aria-hidden="true">
           <div className="hero-video-fallback" />
-          <video autoPlay muted loop playsInline poster="assets/video-poster.jpg" aria-hidden="true">
+          <video autoPlay muted loop playsInline preload="none" aria-hidden="true">
             {videoSrc && <source src={videoSrc} type="video/mp4" />}
           </video>
         </div>
@@ -182,7 +182,6 @@ export default function HomePage() {
               <div className="about-img-frame">
                 <div className="about-img-frame-corner about-img-frame-corner--tl" aria-hidden="true" />
                 <div className="about-img-frame-corner about-img-frame-corner--br" aria-hidden="true" />
-                <img src="assets/about.png" alt="Indian artisan at work — the craft heritage behind Opésh Overseas" loading="lazy" onError={(e) => { e.target.style.display = 'none'; }} />
                 <div className="about-img-fallback" aria-hidden="true">
                   <span className="about-img-fallback-icon">🇮🇳</span>
                   <p>From the Heart<br />of India</p>

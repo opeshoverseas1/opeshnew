@@ -47,24 +47,45 @@ export default function ContactPage() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API request to B2B Sourcing system
-    setTimeout(() => {
-      // Generate a random B2B reference number
-      const randHex = Math.random().toString(16).substring(2, 6).toUpperCase();
-      const year = new Date().getFullYear();
-      setRefNumber(`OPE-EXP-${year}-${randHex}`);
-      
+    // Formspree Sourcing Form Endpoint (register at formspree.io to change this)
+    const FORMSPREE_ENDPOINT = "https://formspree.io/f/xknagwov";
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          ...formData,
+          _subject: `New B2B Sourcing Enquiry: ${formData.fullName} - ${formData.companyName}`
+        })
+      });
+
+      if (response.ok) {
+        // Generate a random B2B reference number
+        const randHex = Math.random().toString(16).substring(2, 6).toUpperCase();
+        const year = new Date().getFullYear();
+        setRefNumber(`OPE-EXP-${year}-${randHex}`);
+        setIsSuccess(true);
+        
+        // Scroll back up to contact heading smoothly
+        const el = document.getElementById('contact-heading');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        alert("We encountered an issue sending your inquiry. Please try again or email us directly at info@opeshoverseas.com");
+      }
+    } catch (err) {
+      console.error("Formspree submit error:", err);
+      alert("Network error. Please check your internet connection or email us directly at info@opeshoverseas.com");
+    } finally {
       setIsSubmitting(false);
-      setIsSuccess(true);
-      
-      // Scroll back up to contact heading smoothly
-      const el = document.getElementById('contact-heading');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }, 1500);
+    }
   };
 
   return (
@@ -339,6 +360,14 @@ export default function ContactPage() {
                   </div>
 
                   <div className="contact-info-item">
+                    <span className="info-icon">💬</span>
+                    <div>
+                      <strong>WhatsApp Business:</strong>
+                      <p><a href="https://wa.me/917976529421" target="_blank" rel="noopener noreferrer">+91 79765 29421</a></p>
+                    </div>
+                  </div>
+
+                  <div className="contact-info-item">
                     <span className="info-icon">🕒</span>
                     <div>
                       <strong>Working Hours:</strong>
@@ -349,6 +378,29 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Google Maps Office Location ── */}
+      <section className="contact-map-section" data-reveal="up">
+        <div className="section-inner" style={{ paddingTop: 0, paddingBottom: '5rem' }}>
+          <div className="map-title-area" style={{ marginBottom: '2rem' }}>
+            <span className="eyebrow">Location Map</span>
+            <h2 style={{ fontSize: '2rem', fontWeight: 300, color: 'var(--text-primary)' }}>Corporate &amp; Sourcing Office</h2>
+            <div className="accent-rule" style={{ width: 60, height: 1, background: 'linear-gradient(90deg, var(--gold), transparent)', margin: '1rem 0' }} />
+          </div>
+          <div className="map-container" style={{ position: 'relative', width: '100%', overflow: 'hidden', borderRadius: 12, border: '1px solid rgba(201, 168, 76, 0.15)', boxShadow: 'var(--shadow-deep)' }}>
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14032.551717887754!2d77.0601956553878!3d28.445250488421882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d18e24c43c22f%3A0xe212879555776d33!2sSector%2045%2C%20Gurugram%2C%20Haryana%20122003!5e0!3m2!1sen!2sin!4v1718873000000!5m2!1sen!2sin" 
+              width="100%" 
+              height="400" 
+              style={{ border: 0, display: 'block' }} 
+              allowFullScreen="" 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Opésh Overseas Gurgaon Office Location"
+            />
           </div>
         </div>
       </section>
