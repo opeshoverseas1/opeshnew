@@ -93,7 +93,7 @@ export default function CareersPage() {
               Send your application directly to:
             </p>
             <p style={{ fontSize: '1.4rem', color: 'var(--gold, #c9a14a)', fontWeight: '600', margin: 0 }}>
-              <a href="mailto:careers@opeshoverseas.com" style={{ textDecoration: 'none' }}>careers@opeshoverseas.com</a>
+              <a href="mailto:info@opeshoverseas.com" style={{ textDecoration: 'none' }}>info@opeshoverseas.com</a>
             </p>
             <p className="note-text" style={{ marginTop: '1.5rem' }}>
               Please mention the role you are applying for in the email subject line (e.g. "Application for Sourcing Specialist").
