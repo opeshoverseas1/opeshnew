@@ -1890,3 +1890,62 @@ body.light-theme .success-notice {
   color: var(--text-secondary) !important;
 }
 
+/* ═══════════════════════════════════════════════
+   IMAGE HANDLING STYLES (Products & About page)
+═══════════════════════════════════════════════ */
+.story-image-wrap img,
+.infra-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.leader-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+/* Product Card Images */
+.product-card-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(232, 201, 122, 0.14);
+  margin-bottom: 1.25rem;
+}
+.product-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.product-card:hover .product-card-image img {
+  transform: scale(1.05);
+}
+.product-image-fallback {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  background: radial-gradient(circle at center, rgba(61, 176, 159, 0.15) 0%, transparent 70%);
+}
+.product-card-image.fallback-active .product-image-fallback {
+  display: flex;
+}
+.product-card-image.fallback-active img {
+  display: none !important;
+}
+
+/* Light Theme overrides for Image borders */
+body.light-theme .product-card-image {
+  border-color: rgba(0, 122, 204, 0.14) !important;
+}
+
