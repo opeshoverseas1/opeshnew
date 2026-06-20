@@ -1573,8 +1573,21 @@ body.light-theme .footer-socials a {
 }
 body.light-theme .footer-socials a:hover {
   background: rgba(0, 122, 204, 0.08) !important;
-  border-color: var(--gold) !important;
-  color: var(--gold) !important;
+}
+body.light-theme .footer-socials a.linkedin:hover {
+  background: rgba(0, 119, 181, 0.08) !important;
+  border-color: #0077b5 !important;
+  color: #0077b5 !important;
+}
+body.light-theme .footer-socials a.instagram:hover {
+  background: rgba(225, 48, 108, 0.08) !important;
+  border-color: #e1306c !important;
+  color: #e1306c !important;
+}
+body.light-theme .footer-socials a.twitter:hover {
+  background: rgba(29, 161, 242, 0.08) !important;
+  border-color: #1da1f2 !important;
+  color: #1da1f2 !important;
 }
 body.light-theme .footer-links a {
   color: var(--text-secondary) !important;

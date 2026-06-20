@@ -3243,10 +3243,22 @@ h1, h2, h3, h4, h5,
   transition: all 0.3s ease;
 }
 .footer-socials a:hover {
-  background: rgba(201, 168, 76, 0.08);
-  border-color: var(--gold, #c9a14a);
-  color: var(--gold, #c9a14a) !important;
   transform: translateY(-3px);
+}
+.footer-socials a.linkedin:hover {
+  background: rgba(0, 119, 181, 0.08) !important;
+  border-color: #0077b5 !important;
+  color: #0077b5 !important;
+}
+.footer-socials a.instagram:hover {
+  background: rgba(225, 48, 108, 0.08) !important;
+  border-color: #e1306c !important;
+  color: #e1306c !important;
+}
+.footer-socials a.twitter:hover {
+  background: rgba(29, 161, 242, 0.08) !important;
+  border-color: #1da1f2 !important;
+  color: #1da1f2 !important;
 }
 .footer-links {
   list-style: none;
