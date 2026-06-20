@@ -20,28 +20,122 @@ import CareersPage from './pages/CareersPage';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Custom Hash Routing Hook
-function useHashRoute() {
-  const [route, setRoute] = useState(window.location.hash || '#/');
+// SPA Navigation helper
+export function navigateTo(path) {
+  window.history.pushState({}, '', path);
+  window.dispatchEvent(new PopStateEvent('popstate'));
+}
+
+// Custom Path Routing Hook
+function usePathRoute() {
+  const [route, setRoute] = useState(window.location.pathname + window.location.search || '/');
 
   useEffect(() => {
-    const handleHashChange = () => {
-      setRoute(window.location.hash || '#/');
+    const handleLocationChange = () => {
+      setRoute(window.location.pathname + window.location.search || '/');
     };
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handleLocationChange);
+    return () => window.removeEventListener('popstate', handleLocationChange);
   }, []);
 
   return route;
 }
 
 export default function App() {
-  const route = useHashRoute();
+  const route = usePathRoute();
   const [theme, setTheme] = useState('dark');
 
   useEffect(() => {
     document.body.classList.toggle('light-theme', theme === 'light');
   }, [theme]);
+
+  // Dynamic document title and meta description updates on route change
+  useEffect(() => {
+    const baseRoute = route.split('?')[0];
+    const cleanRoute = baseRoute.endsWith('/') && baseRoute.length > 1 ? baseRoute.slice(0, -1) : baseRoute;
+    
+    let title = 'Opésh Overseas | Premier B2B Sourcing & Global Export House';
+    let description = 'Gurgaon-based premier export house connecting India\'s finest Ayurveda, handcrafted textiles, and heritage artisanry with global buyers.';
+
+    switch (cleanRoute) {
+      case '/':
+      case '':
+        title = 'Opésh Overseas | Premier B2B Sourcing & Global Export House';
+        description = 'Gurgaon-based premier export house connecting India\'s finest Ayurveda, handcrafted textiles, and heritage artisanry with global buyers. Strict compliance & direct-to-source quality.';
+        break;
+      case '/about':
+        title = 'Our Story & Leadership | Opésh Overseas';
+        description = 'Learn about Opésh Overseas, our Gurgaon head office, direct-to-source principles, audited laboratory testing partner certifications, and leadership team.';
+        break;
+      case '/products':
+        title = 'Export Product Catalog | Opésh Overseas';
+        description = 'Explore our verified export catalog of certified herbal extracts, organic moringa, Makrana marble plates, hand-cast brassware, and Kashmiri Pashmina shawls.';
+        break;
+      case '/compliance':
+        title = 'Quality & Trade Certifications | Opésh Overseas';
+        description = 'View our trade certifications including IEC, MSME, FSSAI, ISO 22000, and GMP compliance. Standard batch Certificates of Analysis and lab audits.';
+        break;
+      case '/logistics':
+        title = 'Sourcing & Shipping Logistics | Opésh Overseas';
+        description = 'Learn about our end-to-end B2B shipping logistics, packaging standards, and port transit timelines to Mundra Port and Nhava Sheva (JNPT).';
+        break;
+      case '/contact':
+        title = 'Request B2B Quote & Sourcing | Opésh Overseas';
+        description = 'Initiate B2B procurement. Contact our Gurgaon sales department or direct sourcing hotline for FOB/CIF quotes on Ayurveda, textiles, and handicrafts.';
+        break;
+      case '/careers':
+        title = 'Careers & Partnerships | Opésh Overseas';
+        description = 'Join our growing global export team and sourcing specialists network in Gurgaon and manufacturing hubs across India.';
+        break;
+      case '/terms':
+        title = 'Terms & Conditions | Opésh Overseas';
+        description = 'Read the terms of service, B2B contract guidelines, liability provisions, and arbitration terms of Opésh Overseas.';
+        break;
+      case '/privacy':
+        title = 'Privacy Policy | Opésh Overseas';
+        description = 'Understand how we protect corporate buyer data, communication logs, specification sheets, and inquiry history at Opésh Overseas.';
+        break;
+      case '/sitemap':
+        title = 'Sitemap | Opésh Overseas';
+        description = 'Full directory of pages, export categories, and trade compliance documents of Opésh Overseas.';
+        break;
+      default:
+        break;
+    }
+
+    document.title = title;
+    
+    // Update meta description
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', description);
+    }
+  }, [route]);
+
+  // Global click interceptor for HTML5 SPA Routing
+  useEffect(() => {
+    const handleGlobalClick = (e) => {
+      const anchor = e.target.closest('a');
+      if (!anchor) return;
+
+      const href = anchor.getAttribute('href');
+      const target = anchor.getAttribute('target');
+      
+      // Allow default browser behavior for modifier keys or target="_blank"
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || target === '_blank') {
+        return;
+      }
+
+      // Intercept clean internal pathnames (starts with '/' and is not protocol-relative)
+      if (href && href.startsWith('/') && !href.startsWith('//')) {
+        e.preventDefault();
+        navigateTo(href);
+      }
+    };
+
+    document.addEventListener('click', handleGlobalClick);
+    return () => document.removeEventListener('click', handleGlobalClick);
+  }, []);
 
   const toggleTheme = () => {
     setTheme(t => {
@@ -97,30 +191,32 @@ export default function App() {
     }, 150);
   }, [route]);
 
-  // Dynamic Page Renderer based on Hash Route (ignores query parameters)
+  // Dynamic Page Renderer based on Path Route (ignores query parameters)
   const renderPage = () => {
     const baseRoute = route.split('?')[0];
-    switch (baseRoute) {
-      case '#/':
-      case '#':
+    const cleanRoute = baseRoute.endsWith('/') && baseRoute.length > 1 ? baseRoute.slice(0, -1) : baseRoute;
+    
+    switch (cleanRoute) {
+      case '/':
+      case '':
         return <HomePage />;
-      case '#/about':
+      case '/about':
         return <AboutPage />;
-      case '#/products':
+      case '/products':
         return <ProductsPage />;
-      case '#/compliance':
+      case '/compliance':
         return <CompliancePage />;
-      case '#/logistics':
+      case '/logistics':
         return <LogisticsPage />;
-      case '#/contact':
+      case '/contact':
         return <ContactPage />;
-      case '#/careers':
+      case '/careers':
         return <CareersPage />;
-      case '#/terms':
+      case '/terms':
         return <TermsPage />;
-      case '#/privacy':
+      case '/privacy':
         return <PrivacyPage />;
-      case '#/sitemap':
+      case '/sitemap':
         return <SitemapPage />;
       default:
         return <HomePage />;
@@ -128,6 +224,7 @@ export default function App() {
   };
 
   const currentBase = route.split('?')[0];
+  const cleanBase = currentBase.endsWith('/') && currentBase.length > 1 ? currentBase.slice(0, -1) : currentBase;
 
   return (
     <>
@@ -176,19 +273,19 @@ export default function App() {
            NAVBAR
         ═══════════════════════════════════════════════ */}
         <header id="navbar" role="banner">
-          <a href="#/" className="nav-brand" aria-label="Opésh Overseas — Home">
+          <a href="/" className="nav-brand" aria-label="Opésh Overseas — Home">
             <span className="nav-brand-name">Opésh <span>Overseas</span></span>
             <span className="nav-brand-sub">India's Premium Export House</span>
           </a>
           
           <nav role="navigation" aria-label="Main navigation">
             <ul className="nav-links">
-              <li><a href="#/" className={currentBase === '#/' || currentBase === '#' ? 'active-link' : ''}>Home</a></li>
-              <li><a href="#/about" className={currentBase === '#/about' ? 'active-link' : ''}>About Us</a></li>
-              <li><a href="#/products" className={currentBase === '#/products' ? 'active-link' : ''}>Products</a></li>
-              <li><a href="#/compliance" className={currentBase === '#/compliance' ? 'active-link' : ''}>Compliance</a></li>
-              <li><a href="#/logistics" className={currentBase === '#/logistics' ? 'active-link' : ''}>Logistics</a></li>
-              <li><a href="#/contact" className={currentBase === '#/contact' ? 'active-link' : ''}>Contact Us</a></li>
+              <li><a href="/" className={cleanBase === '/' || cleanBase === '' ? 'active-link' : ''}>Home</a></li>
+              <li><a href="/about" className={cleanBase === '/about' ? 'active-link' : ''}>About Us</a></li>
+              <li><a href="/products" className={cleanBase === '/products' ? 'active-link' : ''}>Products</a></li>
+              <li><a href="/compliance" className={cleanBase === '/compliance' ? 'active-link' : ''}>Compliance</a></li>
+              <li><a href="/logistics" className={cleanBase === '/logistics' ? 'active-link' : ''}>Logistics</a></li>
+              <li><a href="/contact" className={cleanBase === '/contact' ? 'active-link' : ''}>Contact Us</a></li>
             </ul>
           </nav>
           
@@ -227,19 +324,19 @@ export default function App() {
         <div id="mobile-menu" role="dialog" aria-label="Mobile navigation" aria-modal="true">
           <canvas id="menu-canvas" aria-hidden="true" />
           <nav aria-label="Mobile navigation links">
-            <a href="#/" className={`mobile-nav-link ${currentBase === '#/' || currentBase === '#' ? 'active-link' : ''}`} data-mob-link>Home</a>
-            <a href="#/about" className={`mobile-nav-link ${currentBase === '#/about' ? 'active-link' : ''}`} data-mob-link>About Us</a>
-            <a href="#/products" className={`mobile-nav-link ${currentBase === '#/products' ? 'active-link' : ''}`} data-mob-link>Products</a>
-            <a href="#/compliance" className={`mobile-nav-link ${currentBase === '#/compliance' ? 'active-link' : ''}`} data-mob-link>Compliance</a>
-            <a href="#/logistics" className={`mobile-nav-link ${currentBase === '#/logistics' ? 'active-link' : ''}`} data-mob-link>Logistics</a>
-            <a href="#/contact" className={`mobile-nav-link ${currentBase === '#/contact' ? 'active-link' : ''}`} data-mob-link>Contact Us</a>
+            <a href="/" className={`mobile-nav-link ${cleanBase === '/' || cleanBase === '' ? 'active-link' : ''}`} data-mob-link>Home</a>
+            <a href="/about" className={`mobile-nav-link ${cleanBase === '/about' ? 'active-link' : ''}`} data-mob-link>About Us</a>
+            <a href="/products" className={`mobile-nav-link ${cleanBase === '/products' ? 'active-link' : ''}`} data-mob-link>Products</a>
+            <a href="/compliance" className={`mobile-nav-link ${cleanBase === '/compliance' ? 'active-link' : ''}`} data-mob-link>Compliance</a>
+            <a href="/logistics" className={`mobile-nav-link ${cleanBase === '/logistics' ? 'active-link' : ''}`} data-mob-link>Logistics</a>
+            <a href="/contact" className={`mobile-nav-link ${cleanBase === '/contact' ? 'active-link' : ''}`} data-mob-link>Contact Us</a>
           </nav>
           <div className="mobile-menu-cats" aria-hidden="true">
             <span className="mobile-cat-pill jade">Ayurveda &amp; Herbal</span>
             <span className="mobile-cat-pill gold">Handicrafts</span>
             <span className="mobile-cat-pill crimson">Luxury Textiles</span>
           </div>
-          <a href="#/contact" className="mobile-menu-cta" data-mob-link>
+          <a href="/contact" className="mobile-menu-cta" data-mob-link>
             Send Export Enquiry →
           </a>
         </div>
@@ -259,7 +356,7 @@ export default function App() {
             <div className="footer-grid">
               {/* Brand Column */}
               <div className="footer-col footer-col--brand">
-                <a href="#/" className="footer-logo">
+                <a href="/" className="footer-logo">
                   <span className="footer-logo-main">Opésh <span>Overseas</span></span>
                   <span className="footer-logo-sub">India's Premium Export House</span>
                 </a>
@@ -267,9 +364,21 @@ export default function App() {
                   Bridging India's rich artisanal heritage and ancient wellness sciences with global markets through uncompromising quality and compliance.
                 </p>
                 <div className="footer-socials">
-                  <a href="#/" aria-label="LinkedIn"><span className="social-icon">💼</span></a>
-                  <a href="#/" aria-label="Instagram"><span className="social-icon">📸</span></a>
-                  <a href="#/" aria-label="Twitter"><span className="social-icon">🐦</span></a>
+                  <a href="#/" className="linkedin" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                      <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+                    </svg>
+                  </a>
+                  <a href="#/" className="instagram" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                  </a>
+                  <a href="#/" className="twitter" aria-label="Twitter">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                      <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                  </a>
                 </div>
               </div>
 
@@ -277,9 +386,9 @@ export default function App() {
               <div className="footer-col">
                 <h4>Export Sectors</h4>
                 <ul className="footer-links">
-                  <li><a href="#/products"><span className="bullet">🌿</span> Ayurveda &amp; Herbal</a></li>
-                  <li><a href="#/products"><span className="bullet">🏺</span> Handcrafted Artisanry</a></li>
-                  <li><a href="#/products"><span className="bullet">🧵</span> Luxury Home Textiles</a></li>
+                  <li><a href="/products"><span className="bullet">🌿</span> Ayurveda &amp; Herbal</a></li>
+                  <li><a href="/products"><span className="bullet">🏺</span> Handcrafted Artisanry</a></li>
+                  <li><a href="/products"><span className="bullet">🧵</span> Luxury Home Textiles</a></li>
                 </ul>
               </div>
 
@@ -287,11 +396,11 @@ export default function App() {
               <div className="footer-col">
                 <h4>Quick Links</h4>
                 <ul className="footer-links">
-                  <li><a href="#/about">Our Story</a></li>
-                  <li><a href="#/compliance">Quality &amp; Certifications</a></li>
-                  <li><a href="#/logistics">Sourcing &amp; Logistics</a></li>
-                  <li><a href="#/careers">Careers</a></li>
-                  <li><a href="#/contact">Send Export Enquiry</a></li>
+                  <li><a href="/about">Our Story</a></li>
+                  <li><a href="/compliance">Quality &amp; Certifications</a></li>
+                  <li><a href="/logistics">Sourcing &amp; Logistics</a></li>
+                  <li><a href="/careers">Careers</a></li>
+                  <li><a href="/contact">Send Export Enquiry</a></li>
                 </ul>
               </div>
 
@@ -319,11 +428,11 @@ export default function App() {
                 &copy; {new Date().getFullYear()} Opésh Overseas. All Rights Reserved.
               </p>
               <div className="footer-legal">
-                <a href="#/terms">Terms &amp; Conditions</a>
+                <a href="/terms">Terms &amp; Conditions</a>
                 <span className="legal-sep">·</span>
-                <a href="#/privacy">Privacy Policy</a>
+                <a href="/privacy">Privacy Policy</a>
                 <span className="legal-sep">·</span>
-                <a href="#/sitemap">Sitemap</a>
+                <a href="/sitemap">Sitemap</a>
               </div>
             </div>
           </div>
@@ -488,7 +597,8 @@ export default function App() {
           `
         }} />
 
-        <a href="#/contact" className="floating-enquiry" aria-label="Send export enquiry">
+        {/* Floating Enquiry Button */}
+        <a href="/contact" className="floating-enquiry" aria-label="Send export enquiry">
           Export Enquiry
           <svg viewBox="0 0 12 12" aria-hidden="true">
             <path d="M1 6h10M6 1l5 5-5 5" />
