@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
@@ -6,22 +6,22 @@ import { initGlobals } from './legacy-logic';
 import './index.css';
 import './App.css';
 
-// Import Page Components
-import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import ProductsPage from './pages/ProductsPage';
-import CompliancePage from './pages/CompliancePage';
-import LogisticsPage from './pages/LogisticsPage';
-import ContactPage from './pages/ContactPage';
-import TermsPage from './pages/TermsPage';
-import PrivacyPage from './pages/PrivacyPage';
-import SitemapPage from './pages/SitemapPage';
-import CareersPage from './pages/CareersPage';
+// Lazy-load Page Components for code splitting (reduces initial JS bundle parse time)
+const HomePage    = lazy(() => import('./pages/HomePage'));
+const AboutPage   = lazy(() => import('./pages/AboutPage'));
+const ProductsPage = lazy(() => import('./pages/ProductsPage'));
+const CompliancePage = lazy(() => import('./pages/CompliancePage'));
+const LogisticsPage  = lazy(() => import('./pages/LogisticsPage'));
+const ContactPage    = lazy(() => import('./pages/ContactPage'));
+const TermsPage      = lazy(() => import('./pages/TermsPage'));
+const PrivacyPage    = lazy(() => import('./pages/PrivacyPage'));
+const SitemapPage    = lazy(() => import('./pages/SitemapPage'));
+const CareersPage    = lazy(() => import('./pages/CareersPage'));
 
 gsap.registerPlugin(ScrollTrigger);
 
 // SPA Navigation helper
-export function navigateTo(path) {
+function navigateTo(path) {
   window.history.pushState({}, '', path);
   window.dispatchEvent(new PopStateEvent('popstate'));
 }
@@ -345,7 +345,9 @@ export default function App() {
            MAIN DYNAMIC CONTENT
         ═══════════════════════════════════════════════ */}
         <main id="main">
-          {renderPage()}
+          <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
+            {renderPage()}
+          </Suspense>
         </main>
 
         {/* ═══════════════════════════════════════════════
@@ -441,7 +443,7 @@ export default function App() {
         {/* Global typography cleanup & styling */}
         <style id="final-requested-cleanup" dangerouslySetInnerHTML={{
           __html: `
-            @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+            /* Note: fonts loaded via index.html <link> — no @import needed here */
             :root { --font-display: 'Playfair Display', Georgia, serif !important; }
             .nav-brand-name,
             .hero-h1,

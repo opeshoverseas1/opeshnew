@@ -101,14 +101,26 @@ export function initGlobals() {
     let cy = window.innerHeight / 2;
     let tx = cx, ty = cy;
 
+  let cursorIdleTimer = null;
+  let cursorIdle = false;
+
     cursorMoveListener = function (e) {
       tx = e.clientX;
       ty = e.clientY;
+      // Restart RAF if it was idled
+      if (cursorIdle) {
+        cursorIdle = false;
+        animateCursor();
+      }
+      clearTimeout(cursorIdleTimer);
+      // Stop RAF after 2s of no mouse movement to save CPU
+      cursorIdleTimer = setTimeout(() => { cursorIdle = true; }, 2000);
     };
     document.addEventListener('mousemove', cursorMoveListener);
 
     function animateCursor() {
-      if (!cursorMoveListener) return; // stopped
+      if (!cursorMoveListener) return; // stopped/cleanup
+      if (cursorIdle) return; // paused — mouse inactive, saves CPU
       cx += (tx - cx) * 0.09;
       cy += (ty - cy) * 0.09;
       cursorGlow.style.transform = `translate3d(${cx}px, ${cy}px, 0) translate(-50%, -50%)`;
@@ -260,7 +272,6 @@ export function initGlobals() {
 export async function initHomeAnimations() {
   if (homeScrollTriggers.length > 0) return; // already running
 
-  const mount = document.getElementById('grGlobeMount');
   const overlay = document.getElementById('grOverlay');
   const linesSvg = document.getElementById('grLines');
   const globeEl = document.getElementById('grGlobe');
@@ -540,8 +551,8 @@ export async function initGlobeAnimation() {
 
   const size = Math.min(mount.clientWidth, mount.clientHeight) || 560;
 
-  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.15));
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.0));
   renderer.setSize(size, size);
   renderer.setClearColor(0x000000, 0);
   if (THREE.SRGBColorSpace) renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -622,7 +633,7 @@ export async function initGlobeAnimation() {
 
   scene.add(globe);
 
-  const haloGeo = new THREE.SphereGeometry(116, 64, 64);
+  const haloGeo = new THREE.SphereGeometry(116, 32, 32);
   const haloMat = new THREE.MeshBasicMaterial({ color: haloColor, transparent: true, opacity: 0.095, side: THREE.BackSide });
   scene.add(new THREE.Mesh(haloGeo, haloMat));
 
