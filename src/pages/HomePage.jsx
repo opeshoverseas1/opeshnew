@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { initHomeAnimations, cleanupHomeAnimations, initPageAnimations, cleanupPageAnimations, initGlobeAnimation } from '../legacy-logic';
 
 export default function HomePage() {
@@ -95,13 +95,13 @@ export default function HomePage() {
           </div>
           
           <div className="hero-actions" id="heroActions">
-            <a href="#/products" className="btn-primary" aria-label="Request export product catalogs">
+            <a href="/products" className="btn-primary" aria-label="Request export product catalogs">
               Request B2B Catalog
               <svg viewBox="0 0 12 12" aria-hidden="true">
                 <path d="M1 6h10M6 1l5 5-5 5" />
               </svg>
             </a>
-            <a href="#/contact" className="btn-ghost" aria-label="Send an export pricing enquiry">
+            <a href="/contact" className="btn-ghost" aria-label="Send an export pricing enquiry">
               Request FOB Pricing
             </a>
           </div>
@@ -167,13 +167,13 @@ export default function HomePage() {
               {/* Note: the about-inline-stats block is removed here as requested */}
               
               <div className="about-ctas" data-reveal="up" data-reveal-delay="0.3">
-                <a href="#/products" className="btn-primary">
+                <a href="/products" className="btn-primary">
                   Explore Products
                   <svg viewBox="0 0 12 12" aria-hidden="true" style={{width: 13, height: 13, stroke: 'var(--ink)', fill: 'none', strokeWidth: '2.5', strokeLinecap: 'round', strokeLinejoin: 'round'}}>
                     <path d="M1 6h10M6 1l5 5-5 5" />
                   </svg>
                 </a>
-                <a href="#/about" className="btn-ghost">Why Partner With Us</a>
+                <a href="/about" className="btn-ghost">Why Partner With Us</a>
               </div>
             </div>
 
