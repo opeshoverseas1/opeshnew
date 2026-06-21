@@ -5,6 +5,10 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google-site-verification" content="Ygf4goWYEKB2q0IBZsEA1syXGeeaByFvssApkDYhIOk" />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://opeshoverseas.com/" />
+    <!-- Fragment meta for Googlebot compatibility with SPA content -->
+    <meta name="fragment" content="!" />
     <!-- SEO Title -->
     <title>Opésh Overseas | Premier B2B Sourcing & Global Export House</title>
     
@@ -51,31 +55,67 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Opésh Overseas",
-      "url": "https://opeshoverseas.com/",
-      "logo": "https://opeshoverseas.com/favicon.svg",
-      "description": "Gurgaon-based premium B2B sourcing and export house connecting India's finest Ayurveda, handcrafted textiles, and heritage artisanry with global enterprise buyers.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Sector 45",
-        "addressLocality": "Gurgaon",
-        "addressRegion": "Haryana",
-        "postalCode": "122003",
-        "addressCountry": "IN"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+91-79765-29421",
-        "contactType": "sales",
-        "email": "info@opeshoverseas.com",
-        "areaServed": "Worldwide",
-        "availableLanguage": ["English", "Hindi"]
-      },
-      "founder": {
-        "@type": "Person",
-        "name": "Pavitra Sharma"
-      }
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "Op\u00e9sh Overseas",
+          "url": "https://opeshoverseas.com/",
+          "logo": "https://opeshoverseas.com/favicon.svg",
+          "description": "Gurgaon-based premium B2B sourcing and export house connecting India's finest Ayurveda, handcrafted textiles, and heritage artisanry with global enterprise buyers.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Sector 45",
+            "addressLocality": "Gurgaon",
+            "addressRegion": "Haryana",
+            "postalCode": "122003",
+            "addressCountry": "IN"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-79765-29421",
+            "contactType": "sales",
+            "email": "info@opeshoverseas.com",
+            "areaServed": "Worldwide",
+            "availableLanguage": ["English", "Hindi"]
+          },
+          "founder": {
+            "@type": "Person",
+            "name": "Pavitra Sharma"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/company/opesh-overseas"
+          ]
+        },
+        {
+          "@type": "ItemList",
+          "name": "Opesh Overseas Export Product Catalog",
+          "description": "Premium B2B export products: Ayurvedic herbal extracts, handcrafted artisanry, and luxury textiles from India.",
+          "url": "https://opeshoverseas.com/products",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Ayurveda & Herbal Products",
+              "url": "https://opeshoverseas.com/products",
+              "description": "WHO-GMP certified Ayurvedic herbal extracts including Ashwagandha, Moringa, Turmeric Curcumin, Psyllium Husk, Triphala — bulk B2B export from India."
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Handcrafted Artisanry",
+              "url": "https://opeshoverseas.com/products",
+              "description": "Heritage brass, Makrana marble, sheesham wood, copper, and agate handicrafts — premium B2B wholesale export from India."
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Luxury Home Textiles",
+              "url": "https://opeshoverseas.com/products",
+              "description": "GI-certified Kashmiri Pashmina shawls, GOTS organic cotton bedding, and handloom throws — luxury textile export from India."
+            }
+          ]
+        }
+      ]
     }
     </script>
   </head>
