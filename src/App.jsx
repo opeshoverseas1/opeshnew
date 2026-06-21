@@ -110,6 +110,19 @@ export default function App() {
     if (metaDesc) {
       metaDesc.setAttribute('content', description);
     }
+
+    // Update canonical URL to match current route — critical for Google indexing
+    const canonical = document.querySelector('link[rel="canonical"]');
+    const canonicalUrl = 'https://opeshoverseas.com' + (cleanRoute === '' ? '/' : cleanRoute);
+    if (canonical) {
+      canonical.setAttribute('href', canonicalUrl);
+    }
+
+    // Update og:url to match current route
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) {
+      ogUrl.setAttribute('content', canonicalUrl);
+    }
   }, [route]);
 
   // Global click interceptor for HTML5 SPA Routing
