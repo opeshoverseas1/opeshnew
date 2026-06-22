@@ -55,17 +55,17 @@ export default function App() {
     const cleanRoute = baseRoute.endsWith('/') && baseRoute.length > 1 ? baseRoute.slice(0, -1) : baseRoute;
     
     let title = 'Opésh Overseas | Premier B2B Sourcing & Global Export House';
-    let description = 'Gurgaon-based premier export house connecting India\'s finest Ayurveda, handcrafted textiles, and heritage artisanry with global buyers.';
+    let description = 'Premier B2B export house with corporate offices in Delhi and sourcing operations in Bhilwara, Rajasthan, connecting India\'s finest products with global buyers.';
 
     switch (cleanRoute) {
       case '/':
       case '':
         title = 'Opésh Overseas | Premier B2B Sourcing & Global Export House';
-        description = 'Gurgaon-based premier export house connecting India\'s finest Ayurveda, handcrafted textiles, and heritage artisanry with global buyers. Strict compliance & direct-to-source quality.';
+        description = 'Premier B2B export house with corporate offices in Delhi and sourcing operations in Bhilwara, Rajasthan, connecting India\'s finest Ayurveda, textiles, and handicrafts with global buyers.';
         break;
       case '/about':
         title = 'Our Story & Leadership | Opésh Overseas';
-        description = 'Learn about Opésh Overseas, our Gurgaon head office, direct-to-source principles, audited laboratory testing partner certifications, and leadership team.';
+        description = 'Learn about Opésh Overseas, our Delhi corporate desk, Bhilwara sourcing operations, direct-to-source ethics, NABL testing partners, and leadership team.';
         break;
       case '/products':
         title = 'Export Product Catalog | Opésh Overseas';
@@ -81,11 +81,11 @@ export default function App() {
         break;
       case '/contact':
         title = 'Request B2B Quote & Sourcing | Opésh Overseas';
-        description = 'Initiate B2B procurement. Contact our Gurgaon sales department or direct sourcing hotline for FOB/CIF quotes on Ayurveda, textiles, and handicrafts.';
+        description = 'Initiate B2B procurement. Contact our Delhi sales desk or Bhilwara sourcing hotline for FOB/CIF quotes on Ayurveda, textiles, and handicrafts.';
         break;
       case '/careers':
         title = 'Careers & Partnerships | Opésh Overseas';
-        description = 'Join our growing global export team and sourcing specialists network in Gurgaon and manufacturing hubs across India.';
+        description = 'Join our growing global export team and sourcing specialists network in Delhi and manufacturing hubs across India.';
         break;
       case '/terms':
         title = 'Terms & Conditions | Opésh Overseas';
@@ -411,10 +411,10 @@ export default function App() {
 
               {/* Contact Column */}
               <div className="footer-col footer-col--contact">
-                <h4>Head Office</h4>
+                <h4>Office Locations</h4>
                 <p className="footer-address">
-                  📍 Sector 45, Gurgaon,<br />
-                  Haryana - 122003, India
+                  📍 Corporate Desk: Delhi, India<br />
+                  🏭 Sourcing Hub: Bhilwara, Rajasthan
                 </p>
                 <p className="footer-contact-item">
                   ✉️ <a href="mailto:info@opeshoverseas.com">info@opeshoverseas.com</a>
