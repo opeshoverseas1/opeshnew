@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { initPageAnimations, cleanupPageAnimations } from '../legacy-logic';
 
 export default function SitemapPage() {
@@ -13,20 +13,20 @@ export default function SitemapPage() {
     {
       title: 'Main Navigation',
       links: [
-        { label: 'Home Page', path: '#/', desc: 'Overview of India’s premier B2B sourcing & global export operations.' },
-        { label: 'About Us', path: '#/about', desc: 'Our corporate profile, mission, core values, and leadership details.' },
-        { label: 'Products Catalog', path: '#/products', desc: 'Browse premium Ayurveda, handcrafted textiles, and heritage products.' },
-        { label: 'Compliance & Quality', path: '#/compliance', desc: 'WHO-GMP, ISO, FSSAI certificates, and our 5-stage QA testing timeline.' },
-        { label: 'Sourcing & Logistics', path: '#/logistics', desc: 'Incoterms (FOB/CIF), packaging safety standards, and port transit times.' },
-        { label: 'Contact & Enquiry', path: '#/contact', desc: 'Request customized B2B quotes, FOB price lists, and shipment terms.' }
+        { label: 'Home Page', path: '/', desc: 'Overview of India’s premier B2B sourcing & global export operations.' },
+        { label: 'About Us', path: '/about', desc: 'Our corporate profile, mission, core values, and leadership details.' },
+        { label: 'Products Catalog', path: '/products', desc: 'Browse premium Ayurveda, handcrafted textiles, and heritage products.' },
+        { label: 'Compliance & Quality', path: '/compliance', desc: 'WHO-GMP, ISO, FSSAI certificates, and our 5-stage QA testing timeline.' },
+        { label: 'Sourcing & Logistics', path: '/logistics', desc: 'Incoterms (FOB/CIF), packaging safety standards, and port transit times.' },
+        { label: 'Contact & Enquiry', path: '/contact', desc: 'Request customized B2B quotes, FOB price lists, and shipment terms.' }
       ]
     },
     {
       title: 'Legal & Info',
       links: [
-        { label: 'Terms & Conditions', path: '#/terms', desc: 'Standard terms governing quotations, orders, payments, and trade frameworks.' },
-        { label: 'Privacy Policy', path: '#/privacy', desc: 'Our policies detailing the protection and management of corporate data.' },
-        { label: 'Sitemap Directory', path: '#/sitemap', desc: 'A complete structural listing of all public pages on our platform.' }
+        { label: 'Terms & Conditions', path: '/terms', desc: 'Standard terms governing quotations, orders, payments, and trade frameworks.' },
+        { label: 'Privacy Policy', path: '/privacy', desc: 'Our policies detailing the protection and management of corporate data.' },
+        { label: 'Sitemap Directory', path: '/sitemap', desc: 'A complete structural listing of all public pages on our platform.' }
       ]
     }
   ];
