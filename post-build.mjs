@@ -1,30 +1,67 @@
 // post-build.mjs
 // Copies dist/index.html into each route subdirectory so GitHub Pages
 // serves a real HTTP 200 for /about, /products, etc.
-// Googlebot and crawlers then see a valid page instead of a 404.
+// Injects route-specific SEO titles, descriptions, and canonical URLs
+// so Googlebot and crawlers see optimized metadata immediately.
 
-import { copyFileSync, mkdirSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join } from 'path';
 
 const distDir = 'dist';
 const srcFile = join(distDir, 'index.html');
 
-// All SPA routes that need their own index.html
-const routes = [
-  'about',
-  'products',
-  'compliance',
-  'logistics',
-  'contact',
-  'careers',
-  'terms',
-  'privacy',
-  'sitemap',
-];
+if (!existsSync(srcFile)) {
+  console.error(`❌ Error: ${srcFile} not found. Build project first.`);
+  process.exit(1);
+}
 
-console.log('📄 Post-build: Copying index.html to all route directories...\n');
+const template = readFileSync(srcFile, 'utf8');
 
-for (const route of routes) {
+// Route-specific metadata mapping (matches App.jsx)
+const routeMetadata = {
+  about: {
+    title: 'Our Story & Leadership | Opésh Overseas',
+    description: 'Learn about Opésh Overseas, our Gurgaon head office, direct-to-source principles, audited laboratory testing partner certifications, and leadership team.',
+  },
+  products: {
+    title: 'Export Product Catalog | Opésh Overseas',
+    description: 'Explore our verified export catalog of certified herbal extracts, organic moringa, Makrana marble plates, hand-cast brassware, and Kashmiri Pashmina shawls.',
+  },
+  compliance: {
+    title: 'Quality & Trade Certifications | Opésh Overseas',
+    description: 'View our trade certifications including IEC, MSME, FSSAI, ISO 22000, and GMP compliance. Standard batch Certificates of Analysis and lab audits.',
+  },
+  logistics: {
+    title: 'Sourcing & Shipping Logistics | Opésh Overseas',
+    description: 'Learn about our end-to-end B2B shipping logistics, packaging standards, and port transit timelines to Mundra Port and Nhava Sheva (JNPT).',
+  },
+  contact: {
+    title: 'Request B2B Quote & Sourcing | Opésh Overseas',
+    description: 'Initiate B2B procurement. Contact our Gurgaon sales department or direct sourcing hotline for FOB/CIF quotes on Ayurveda, textiles, and handicrafts.',
+  },
+  careers: {
+    title: 'Careers & Partnerships | Opésh Overseas',
+    description: 'Join our growing global export team and sourcing specialists network in Gurgaon and manufacturing hubs across India.',
+  },
+  terms: {
+    title: 'Terms & Conditions | Opésh Overseas',
+    description: 'Read the terms of service, B2B contract guidelines, liability provisions, and arbitration terms of Opésh Overseas.',
+  },
+  privacy: {
+    title: 'Privacy Policy | Opésh Overseas',
+    description: 'Understand how we protect corporate buyer data, communication logs, specification sheets, and inquiry history at Opésh Overseas.',
+  },
+  sitemap: {
+    title: 'Sitemap | Opésh Overseas',
+    description: 'Full directory of pages, export categories, and trade compliance documents of Opésh Overseas.',
+  },
+};
+
+const defaultDesc = "Gurgaon-based premier export house connecting India's finest Ayurveda, handcrafted textiles, and heritage artisanry with global buyers. Strict compliance & direct-to-source quality.";
+
+console.log('📄 Post-build: Generating optimized index.html files for all routes...\n');
+
+for (const [route, meta] of Object.entries(routeMetadata)) {
   const dir = join(distDir, route);
   const dest = join(dir, 'index.html');
 
@@ -32,8 +69,55 @@ for (const route of routes) {
     mkdirSync(dir, { recursive: true });
   }
 
-  copyFileSync(srcFile, dest);
-  console.log(`  ✅  dist/${route}/index.html`);
+  const canonicalUrl = `https://opeshoverseas.com/${route}`;
+
+  let html = template;
+
+  // 1. Inject canonical and OG URL
+  html = html.replace(
+    '<link rel="canonical" href="https://opeshoverseas.com/" />',
+    `<link rel="canonical" href="${canonicalUrl}" />`
+  );
+  html = html.replace(
+    '<meta property="og:url" content="https://opeshoverseas.com/" />',
+    `<meta property="og:url" content="${canonicalUrl}" />`
+  );
+  html = html.replace(
+    '<meta property="twitter:url" content="https://opeshoverseas.com/" />',
+    `<meta property="twitter:url" content="${canonicalUrl}" />`
+  );
+
+  // 2. Inject Page Title
+  html = html.replace(
+    '<title>Opésh Overseas | Premier B2B Sourcing & Global Export House</title>',
+    `<title>${meta.title}</title>`
+  );
+  html = html.replace(
+    '<meta property="og:title" content="Opésh Overseas | Premier B2B Sourcing & Global Export House" />',
+    `<meta property="og:title" content="${meta.title}" />`
+  );
+  html = html.replace(
+    '<meta property="twitter:title" content="Opésh Overseas | Premier B2B Sourcing & Global Export House" />',
+    `<meta property="twitter:title" content="${meta.title}" />`
+  );
+
+  // 3. Inject Page Description
+  html = html.replace(
+    `<meta name="description" content="${defaultDesc}" />`,
+    `<meta name="description" content="${meta.description}" />`
+  );
+  html = html.replace(
+    `<meta property="og:description" content="${defaultDesc}" />`,
+    `<meta property="og:description" content="${meta.description}" />`
+  );
+  html = html.replace(
+    `<meta property="twitter:description" content="${defaultDesc}" />`,
+    `<meta property="twitter:description" content="${meta.description}" />`
+  );
+
+  writeFileSync(dest, html, 'utf8');
+  console.log(`  ✅  dist/${route}/index.html (SEO optimized)`);
 }
 
-console.log('\n✓ All routes now return HTTP 200 to Googlebot.\n');
+console.log('\n✓ All routes generated and SEO-optimized successfully.\n');
+
