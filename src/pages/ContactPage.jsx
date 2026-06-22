@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { initPageAnimations, cleanupPageAnimations } from '../legacy-logic';
 
 export default function ContactPage() {
@@ -22,19 +22,30 @@ export default function ContactPage() {
   useEffect(() => {
     initPageAnimations();
 
-    // Check if there's a product in the query parameters of the hash route
-    const hashParts = window.location.hash.split('?');
-    if (hashParts.length > 1) {
-      const searchParams = new URLSearchParams(hashParts[1]);
-      const product = searchParams.get('product');
-      if (product) {
-        setFormData(prev => ({
-          ...prev,
-          targetProduct: decodeURIComponent(product),
-          sector: product.toLowerCase().includes('pashmina') || product.toLowerCase().includes('cotton') || product.toLowerCase().includes('throw') ? 'textile' :
-                  product.toLowerCase().includes('brass') || product.toLowerCase().includes('marble') || product.toLowerCase().includes('carved') ? 'handicraft' : 'herbal'
-        }));
+    // Check clean path search parameters (window.location.search) or hash search parameters
+    let product = null;
+    if (window.location.search) {
+      const searchParams = new URLSearchParams(window.location.search);
+      product = searchParams.get('product');
+    }
+    
+    if (!product) {
+      const hashParts = window.location.hash.split('?');
+      if (hashParts.length > 1) {
+        const searchParams = new URLSearchParams(hashParts[1]);
+        product = searchParams.get('product');
       }
+    }
+
+    if (product) {
+      const decodedProduct = decodeURIComponent(product);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setFormData(prev => ({
+        ...prev,
+        targetProduct: decodedProduct,
+        sector: decodedProduct.toLowerCase().includes('pashmina') || decodedProduct.toLowerCase().includes('cotton') || decodedProduct.toLowerCase().includes('throw') ? 'textile' :
+                decodedProduct.toLowerCase().includes('brass') || decodedProduct.toLowerCase().includes('marble') || decodedProduct.toLowerCase().includes('carved') ? 'handicraft' : 'herbal'
+      }));
     }
 
     return () => {
