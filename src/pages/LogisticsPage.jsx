@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { initPageAnimations, cleanupPageAnimations } from '../legacy-logic';
 
 export default function LogisticsPage() {
@@ -134,7 +134,7 @@ export default function LogisticsPage() {
               <h3>IGI Cargo Terminal (INDEL)</h3>
               <span className="port-tag">New Delhi Air Cargo Gateway</span>
               <p>
-                Located close to our Gurgaon head office. Ideal for high-value organic essential oils, luxury Pashmina shawls, and premium samples requiring express delivery within 48 to 72 hours.
+                Located close to our Delhi corporate desk. Ideal for high-value organic essential oils, luxury Pashmina shawls, and premium samples requiring express delivery within 48 to 72 hours.
               </p>
             </div>
           </div>

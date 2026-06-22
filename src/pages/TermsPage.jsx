@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { initPageAnimations, cleanupPageAnimations } from '../legacy-logic';
 
 export default function TermsPage() {
@@ -58,7 +58,7 @@ export default function TermsPage() {
 
             <h2 style={{ color: 'var(--text-primary)', marginTop: '2.5rem', marginBottom: '1rem', fontWeight: '400' }}>6. Governing Law and Jurisdiction</h2>
             <p>
-              These Terms and Conditions and all commercial transactions thereunder shall be governed by and construed in accordance with the laws of India. Any disputes arising out of or in connection with shipments or contracts shall be subject to the exclusive jurisdiction of the competent courts in Gurgaon, Haryana, India.
+              These Terms and Conditions and all commercial transactions thereunder shall be governed by and construed in accordance with the laws of India. Any disputes arising out of or in connection with shipments or contracts shall be subject to the exclusive jurisdiction of the competent courts in Bhilwara, Rajasthan, India.
             </p>
 
             <p style={{ marginTop: '3.5rem', fontSize: '0.82rem', color: 'var(--text-muted)' }}>

@@ -107,7 +107,7 @@ export default function ContactPage() {
           <span className="eyebrow">Export Enquiry</span>
           <h1>Initiate B2B <em className="em-gold">Procurement</em></h1>
           <p className="page-header-lead">
-            Submit your material requirements, packaging specifications, and target destination port. Our Gurgaon-based trade managers will draft a preliminary FOB/CIF quote.
+            Submit your material requirements, packaging specifications, and target destination port. Our trade managers will draft a preliminary FOB/CIF quote.
           </p>
         </div>
       </header>
@@ -135,7 +135,7 @@ export default function ContactPage() {
                   </div>
 
                   <p className="success-notice">
-                    A dedicated trade compliance manager from our Gurgaon headquarters will review your specifications and contact you at <strong>{formData.businessEmail}</strong> within 1 business day (24 hours) with standard FOB/CIF estimations.
+                    A dedicated trade compliance manager from our team will review your specifications and contact you at <strong>{formData.businessEmail}</strong> within 1 business day (24 hours) with standard FOB/CIF estimations.
                   </p>
 
                   <button 
@@ -288,7 +288,7 @@ export default function ContactPage() {
                     >
                       <option value="fob">FOB (Free On Board) — Port Mundra / Nhava Sheva</option>
                       <option value="cif">CIF (Cost, Insurance &amp; Freight) — Destination Port</option>
-                      <option value="exw">Ex-Works (Ex-Warehouse Gurgaon)</option>
+                      <option value="exw">Ex-Works (Ex-Warehouse Bhilwara)</option>
                     </select>
                   </div>
 
@@ -329,20 +329,28 @@ export default function ContactPage() {
             {/* RIGHT Column: Direct Contacts */}
             <div className="contact-details-wrap" data-reveal="left" data-reveal-delay="0.15">
               <div className="contact-details-box">
-                <span className="sub-eyebrow">Head Office Details</span>
+                <span className="sub-eyebrow">Office Locations</span>
                 <h2>Opésh Overseas</h2>
                 <div className="accent-rule" />
                 
                 <p className="contact-desc">
-                  For administrative matters, direct audits, or custom sourcing contract queries, reach our corporate team in Gurgaon.
+                  For administrative matters, direct audits, or custom sourcing queries, contact our corporate or sourcing office.
                 </p>
 
                 <div className="contact-info-list">
                   <div className="contact-info-item">
                     <span className="info-icon">📍</span>
                     <div>
-                      <strong>Corporate Headquarters:</strong>
-                      <p>Sector 45, Gurgaon, Haryana - 122003, India</p>
+                      <strong>Corporate Desk:</strong>
+                      <p>Delhi, India</p>
+                    </div>
+                  </div>
+
+                  <div className="contact-info-item">
+                    <span className="info-icon">🏭</span>
+                    <div>
+                      <strong>Sourcing &amp; Registered Office:</strong>
+                      <p>Bhilwara, Rajasthan - 311001, India</p>
                     </div>
                   </div>
 
@@ -398,19 +406,19 @@ export default function ContactPage() {
         <div className="section-inner" style={{ paddingTop: 0, paddingBottom: '5rem' }}>
           <div className="map-title-area" style={{ marginBottom: '2rem' }}>
             <span className="eyebrow">Location Map</span>
-            <h2 style={{ fontSize: '2rem', fontWeight: 300, color: 'var(--text-primary)' }}>Corporate &amp; Sourcing Office</h2>
+            <h2 style={{ fontSize: '2rem', fontWeight: 300, color: 'var(--text-primary)' }}>Sourcing &amp; Operations Hub</h2>
             <div className="accent-rule" style={{ width: 60, height: 1, background: 'linear-gradient(90deg, var(--gold), transparent)', margin: '1rem 0' }} />
           </div>
           <div className="map-container" style={{ position: 'relative', width: '100%', overflow: 'hidden', borderRadius: 12, border: '1px solid rgba(201, 168, 76, 0.15)', boxShadow: 'var(--shadow-deep)' }}>
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14032.551717887754!2d77.0601956553878!3d28.445250488421882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d18e24c43c22f%3A0xe212879555776d33!2sSector%2045%2C%20Gurugram%2C%20Haryana%20122003!5e0!3m2!1sen!2sin!4v1718873000000!5m2!1sen!2sin" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115163.66699105436!2d74.55745199653846!3d25.350711910793616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3968c240974cfc4f%3A0x7d6f51beed5220c5!2sBhilwara%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1718873000000!5m2!1sen!2sin" 
               width="100%" 
               height="400" 
               style={{ border: 0, display: 'block' }} 
               allowFullScreen="" 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
-              title="Opésh Overseas Gurgaon Office Location"
+              title="Opésh Overseas Bhilwara Sourcing Hub Location"
             />
           </div>
         </div>

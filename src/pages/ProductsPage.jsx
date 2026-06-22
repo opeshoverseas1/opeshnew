@@ -430,7 +430,7 @@ export default function ProductsPage() {
           <div className="cta-banner-content">
             <h3>Custom Sourcing &amp; Formulation</h3>
             <p>
-              Do you require customized extract percentages, specific wood finishes, or private label cotton weave designs? Our Gurgaon team collaborates directly with manufacturers to audit and deliver custom B2B requests.
+              Do you require customized extract percentages, specific wood finishes, or private label cotton weave designs? Our sourcing team collaborates directly with manufacturers to audit and deliver custom B2B requests.
             </p>
             <a href="/contact" className="btn-ghost">Speak to Sourcing Specialist</a>
           </div>

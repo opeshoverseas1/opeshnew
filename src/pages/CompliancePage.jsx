@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { initPageAnimations, cleanupPageAnimations } from '../legacy-logic';
 
 export default function CompliancePage() {
@@ -219,7 +219,7 @@ export default function CompliancePage() {
               <div className="qa-step-content">
                 <h3>Climate-Controlled Packaging</h3>
                 <p>
-                  Approved batches are packed in moisture-barrier vacuum seals or double LDPE food-grade drums inside our Gurgaon hub, preventing transport degradation.
+                  Approved batches are packed in moisture-barrier vacuum seals or double LDPE food-grade drums inside our Bhilwara logistics hub, preventing transport degradation.
                 </p>
               </div>
             </div>

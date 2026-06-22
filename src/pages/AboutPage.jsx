@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { initPageAnimations, cleanupPageAnimations } from '../legacy-logic';
 
 export default function AboutPage() {
@@ -31,7 +31,7 @@ export default function AboutPage() {
               <h2 id="story-heading">Uncompromising Sourcing &amp; Compliance</h2>
               <div className="accent-rule" />
               <p>
-                Founded in Gurgaon, Haryana, Opésh Overseas was born out of a commitment to resolve the fundamental gap in international trade: access to India's finest producers with the corporate compliance and logistical precision expected by international buyers.
+                With our corporate office in Delhi and our core operational hub in Bhilwara, Rajasthan — the textile capital of India — Opésh Overseas was born out of a commitment to resolve the fundamental gap in international trade: access to India's finest producers with the corporate compliance and logistical precision expected by international B2B buyers.
               </p>
               <p>
                 We do not operate as standard brokers. We act as curators, laboratory auditors, and logistics specialists. By establishing direct relationships with organic cultivators, weaving clusters, and WHO-GMP manufacturing labs, we guarantee quality transparency from soil to delivery port.
@@ -118,16 +118,16 @@ export default function AboutPage() {
             <div className="infra-visual" data-reveal="right">
               <div className="infra-fallback">
                 <span className="infra-icon">🏭</span>
-                <span className="infra-label">Gurgaon Sourcing &amp; Logistics Hub</span>
+                <span className="infra-label">Bhilwara Sourcing &amp; Logistics Hub</span>
               </div>
             </div>
             
             <div className="infra-text" data-reveal="up" data-reveal-delay="0.15">
               <span className="sub-eyebrow">Our Facilities</span>
-              <h2 id="infra-heading">Audited Facilities &amp; Warehouse Operations</h2>
+              <h2 id="infra-heading">Sourcing Hub &amp; Cluster Operations</h2>
               <div className="accent-rule" />
               <p>
-                Our head office and centralized export packaging facility are located in Gurgaon, Haryana, offering direct connectivity to transit lanes leading to India's major shipping hubs.
+                Our logistics and sourcing unit is located directly in Bhilwara, Rajasthan, the textile hub of India. Strategically positioned close to heritage mineral and artisan clusters like Udaipur (handicrafts), Makrana &amp; Kishangarh (marble), and Jaipur, our team works in close proximity to local manufacturers to perform direct quality audits and coordinate shipping.
               </p>
               <ul>
                 <li>

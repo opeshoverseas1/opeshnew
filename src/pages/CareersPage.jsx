@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { initPageAnimations, cleanupPageAnimations } from '../legacy-logic';
 
 export default function CareersPage() {
@@ -13,21 +13,21 @@ export default function CareersPage() {
     {
       title: 'Sourcing & Quality Assurance Specialist',
       department: 'Procurement',
-      location: 'Gurgaon, Haryana + Travel to farmer clusters',
+      location: 'Bhilwara / Rajasthan clusters + Sourcing travel',
       type: 'Full-Time',
       description: 'Responsible for visiting partnered farms, evaluating harvesting standards, drawing pre-shipment botanical samples, and auditing clean processing lines.'
     },
     {
       title: 'B2B International Sales Manager',
       department: 'Global Accounts',
-      location: 'Gurgaon, Haryana',
+      location: 'Delhi Office',
       type: 'Full-Time',
       description: 'Manage relations with bulk international accounts, coordinate contract requirements, handle quotation requests (FOB/CIF terms), and secure new purchase agreements.'
     },
     {
       title: 'Global Logistics & Customs Specialist',
       department: 'Supply Chain Operations',
-      location: 'Gurgaon, Haryana',
+      location: 'Delhi Office / Bhilwara Hub',
       type: 'Full-Time',
       description: 'Oversee booking shipping lanes, generating customs documentation (CoO, Phytosanitary certificates, MSDS), and coordinating loading at Mundra/Nhava Sheva ports.'
     }
@@ -93,7 +93,7 @@ export default function CareersPage() {
               Send your application directly to:
             </p>
             <p style={{ fontSize: '1.4rem', color: 'var(--gold, #c9a14a)', fontWeight: '600', margin: 0 }}>
-              <a href="mailto:info@opeshoverseas.com" style={{ textDecoration: 'none' }}>info@opeshoverseas.com</a>
+              <a href="mailto:careers@opeshoverseas.com" style={{ textDecoration: 'none' }}>careers@opeshoverseas.com</a>
             </p>
             <p className="note-text" style={{ marginTop: '1.5rem' }}>
               Please mention the role you are applying for in the email subject line (e.g. "Application for Sourcing Specialist").

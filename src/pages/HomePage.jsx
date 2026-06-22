@@ -63,7 +63,7 @@ export default function HomePage() {
           <div className="hero-glass-card">
             <div className="hero-badge" id="heroBadge">
               <span className="hero-badge-dot" aria-hidden="true" />
-              Gurgaon, India &nbsp;·&nbsp; Exporting to 30+ Nations
+              Delhi &amp; Bhilwara, India &nbsp;·&nbsp; Exporting to 30+ Nations
             </div>
             
             <h1 className="hero-h1" id="heroH1">
@@ -150,7 +150,7 @@ export default function HomePage() {
               </h2>
               <div className="about-rule" data-reveal="fade" data-reveal-delay="0.15" />
               <p data-reveal="up" data-reveal-delay="0.1">
-                Opésh Overseas is a Gurgaon-based premium export house founded
+                Opésh Overseas is a premier B2B export house with corporate offices in Delhi and operations in Bhilwara, Rajasthan, founded
                 on one conviction: that India's most extraordinary makers —
                 Ayurvedic formulators, master weavers, and generational
                 artisans — deserve direct access to the world's most
