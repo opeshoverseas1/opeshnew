@@ -62,11 +62,11 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Formspree Sourcing Form Endpoint (register at formspree.io to change this)
-    const FORMSPREE_ENDPOINT = "https://formspree.io/f/xknagwov";
+    // Unlimited free form submission endpoint via FormSubmit.co
+    const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax/info@opeshoverseas.com";
 
     try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
+      const response = await fetch(FORMSUBMIT_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ export default function ContactPage() {
         alert("We encountered an issue sending your inquiry. Please try again or email us directly at info@opeshoverseas.com");
       }
     } catch (err) {
-      console.error("Formspree submit error:", err);
+      console.error("FormSubmit submit error:", err);
       alert("Network error. Please check your internet connection or email us directly at info@opeshoverseas.com");
     } finally {
       setIsSubmitting(false);
