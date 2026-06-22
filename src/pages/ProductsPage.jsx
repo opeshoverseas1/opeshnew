@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { initPageAnimations, cleanupPageAnimations } from '../legacy-logic';
 
 export default function ProductsPage() {
@@ -408,7 +408,7 @@ export default function ProductsPage() {
 
                 <div className="product-card-actions">
                   <a 
-                    href={`#/contact?product=${encodeURIComponent(p.name)}`} 
+                    href={`/contact?product=${encodeURIComponent(p.name)}`} 
                     className="btn-primary btn-sm"
                     aria-label={`Request FOB quote for ${p.name}`}
                   >
@@ -432,7 +432,7 @@ export default function ProductsPage() {
             <p>
               Do you require customized extract percentages, specific wood finishes, or private label cotton weave designs? Our Gurgaon team collaborates directly with manufacturers to audit and deliver custom B2B requests.
             </p>
-            <a href="#/contact" className="btn-ghost">Speak to Sourcing Specialist</a>
+            <a href="/contact" className="btn-ghost">Speak to Sourcing Specialist</a>
           </div>
         </div>
       </section>
