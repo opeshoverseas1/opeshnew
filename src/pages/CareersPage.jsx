@@ -37,6 +37,20 @@ export default function CareersPage() {
       location: 'Delhi Office / Hybrid',
       type: 'Internship',
       description: 'Coordinate B2B digital campaigns, design product brochures, create updates for social media channels, and manage professional LinkedIn content.'
+    },
+    {
+      title: 'Export Operations & Documentation Intern',
+      department: 'Supply Chain Operations',
+      location: 'Delhi Office / Hybrid',
+      type: 'Internship',
+      description: 'Assist in drafting essential international trade documents, including Proforma Invoices, Commercial Invoices, and Packing Lists, while supporting global shipping coordination.'
+    },
+    {
+      title: 'International B2B Sales Intern',
+      department: 'Global Accounts',
+      location: 'Delhi Office / Hybrid',
+      type: 'Internship',
+      description: 'Support international market research, qualify inbound buyer leads, draft export quotation sheets, and assist with client communications for global trade accounts.'
     }
   ];
 
@@ -87,7 +101,7 @@ export default function CareersPage() {
       {/* ── How to Apply ── */}
       <section className="careers-apply" style={{ borderTop: '1px solid rgba(232, 201, 122, 0.08)', padding: '5rem 0' }} aria-labelledby="apply-heading">
         <div className="section-inner">
-          <div className="contact-form-wrap" style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto' }}>
             <h2 id="apply-heading" className="form-title" style={{ borderBottom: 'none', paddingBottom: 0, marginBottom: '1rem' }}>How to Join Our Team</h2>
             <p className="success-notice" style={{ marginBottom: '2rem' }}>
               We value hands-on operational excellence, communication skills, and absolute professional integrity. 
