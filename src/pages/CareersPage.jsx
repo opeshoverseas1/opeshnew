@@ -30,6 +30,13 @@ export default function CareersPage() {
       location: 'Delhi Office / Bhilwara Hub',
       type: 'Full-Time',
       description: 'Oversee booking shipping lanes, generating customs documentation (CoO, Phytosanitary certificates, MSDS), and coordinating loading at Mundra/Nhava Sheva ports.'
+    },
+    {
+      title: 'Digital Marketing & Content Intern',
+      department: 'Marketing & Communications',
+      location: 'Delhi Office / Hybrid',
+      type: 'Internship',
+      description: 'Coordinate B2B digital campaigns, design product brochures, create updates for social media channels, and manage professional LinkedIn content.'
     }
   ];
 
@@ -93,7 +100,7 @@ export default function CareersPage() {
               Send your application directly to:
             </p>
             <p style={{ fontSize: '1.4rem', color: 'var(--gold, #c9a14a)', fontWeight: '600', margin: 0 }}>
-              <a href="mailto:careers@opeshoverseas.com" style={{ textDecoration: 'none' }}>careers@opeshoverseas.com</a>
+              <a href="mailto:info@opeshoverseas.com" style={{ textDecoration: 'none' }}>info@opeshoverseas.com</a>
             </p>
             <p className="note-text" style={{ marginTop: '1.5rem' }}>
               Please mention the role you are applying for in the email subject line (e.g. "Application for Sourcing Specialist").
