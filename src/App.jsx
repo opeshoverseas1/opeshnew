@@ -298,6 +298,7 @@ export default function App() {
               <li><a href="/products" className={cleanBase === '/products' ? 'active-link' : ''}>Products</a></li>
               <li><a href="/compliance" className={cleanBase === '/compliance' ? 'active-link' : ''}>Compliance</a></li>
               <li><a href="/logistics" className={cleanBase === '/logistics' ? 'active-link' : ''}>Logistics</a></li>
+              <li><a href="/careers" className={cleanBase === '/careers' ? 'active-link' : ''}>Careers</a></li>
               <li><a href="/contact" className={cleanBase === '/contact' ? 'active-link' : ''}>Contact Us</a></li>
             </ul>
           </nav>
@@ -342,6 +343,7 @@ export default function App() {
             <a href="/products" className={`mobile-nav-link ${cleanBase === '/products' ? 'active-link' : ''}`} data-mob-link>Products</a>
             <a href="/compliance" className={`mobile-nav-link ${cleanBase === '/compliance' ? 'active-link' : ''}`} data-mob-link>Compliance</a>
             <a href="/logistics" className={`mobile-nav-link ${cleanBase === '/logistics' ? 'active-link' : ''}`} data-mob-link>Logistics</a>
+            <a href="/careers" className={`mobile-nav-link ${cleanBase === '/careers' ? 'active-link' : ''}`} data-mob-link>Careers</a>
             <a href="/contact" className={`mobile-nav-link ${cleanBase === '/contact' ? 'active-link' : ''}`} data-mob-link>Contact Us</a>
           </nav>
           <div className="mobile-menu-cats" aria-hidden="true">
