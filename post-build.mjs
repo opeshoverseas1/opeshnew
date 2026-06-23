@@ -21,11 +21,11 @@ const template = readFileSync(srcFile, 'utf8');
 const routeMetadata = {
   about: {
     title: 'Our Story & Leadership | Opésh Overseas',
-    description: 'Learn about Opésh Overseas, our Gurgaon head office, direct-to-source principles, audited laboratory testing partner certifications, and leadership team.',
+    description: 'Learn about Opésh Overseas, our Delhi corporate desk, Bhilwara sourcing and logistics hub, direct-to-source principles, and leadership team.',
   },
   products: {
     title: 'Export Product Catalog | Opésh Overseas',
-    description: 'Explore our verified export catalog of certified herbal extracts, organic moringa, Makrana marble plates, hand-cast brassware, and Kashmiri Pashmina shawls.',
+    description: 'Explore our verified export catalog of certified herbal extracts, organic moringa, Makrana marble plates, hand-cast brassware, and handcrafted textiles.',
   },
   compliance: {
     title: 'Quality & Trade Certifications | Opésh Overseas',
@@ -33,19 +33,19 @@ const routeMetadata = {
   },
   logistics: {
     title: 'Sourcing & Shipping Logistics | Opésh Overseas',
-    description: 'Learn about our end-to-end B2B shipping logistics, packaging standards, and port transit timelines to Mundra Port and Nhava Sheva (JNPT).',
+    description: 'Learn about our B2B shipping logistics, packaging standards at Bhilwara, and port transit timelines to Mundra and Nhava Sheva (JNPT).',
   },
   contact: {
     title: 'Request B2B Quote & Sourcing | Opésh Overseas',
-    description: 'Initiate B2B procurement. Contact our Gurgaon sales department or direct sourcing hotline for FOB/CIF quotes on Ayurveda, textiles, and handicrafts.',
+    description: 'Initiate B2B procurement. Contact our Delhi corporate desk or Bhilwara sourcing office for FOB/CIF quotes on Ayurveda, textiles, and handicrafts.',
   },
   careers: {
     title: 'Careers & Partnerships | Opésh Overseas',
-    description: 'Join our growing global export team and sourcing specialists network in Gurgaon and manufacturing hubs across India.',
+    description: 'Join our growing global export team and sourcing specialists network in Delhi, Bhilwara, and manufacturing hubs across India.',
   },
   terms: {
     title: 'Terms & Conditions | Opésh Overseas',
-    description: 'Read the terms of service, B2B contract guidelines, liability provisions, and arbitration terms of Opésh Overseas.',
+    description: 'Read the terms of service, B2B contract guidelines, liability provisions, and legal jurisdiction of Opésh Overseas under Bhilwara, Rajasthan.',
   },
   privacy: {
     title: 'Privacy Policy | Opésh Overseas',
@@ -57,7 +57,7 @@ const routeMetadata = {
   },
 };
 
-const defaultDesc = "Gurgaon-based premier export house connecting India's finest Ayurveda, handcrafted textiles, and heritage artisanry with global buyers. Strict compliance & direct-to-source quality.";
+const defaultDesc = "Premier B2B export house with corporate offices in Delhi and sourcing operations in Bhilwara, Rajasthan, connecting India's finest Ayurveda, textiles, and handicrafts with global buyers.";
 
 console.log('📄 Post-build: Generating optimized index.html files for all routes...\n');
 
