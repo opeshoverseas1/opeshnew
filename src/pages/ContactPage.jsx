@@ -18,6 +18,7 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [refNumber, setRefNumber] = useState('');
+  const [activeFaq, setActiveFaq] = useState(null);
 
   useEffect(() => {
     initPageAnimations();
@@ -403,7 +404,7 @@ export default function ContactPage() {
 
       {/* ── Google Maps Office Location ── */}
       <section className="contact-map-section" data-reveal="up">
-        <div className="section-inner" style={{ paddingTop: 0, paddingBottom: '5rem' }}>
+        <div className="section-inner" style={{ paddingTop: 0, paddingBottom: '3rem' }}>
           <div className="map-title-area" style={{ marginBottom: '2rem' }}>
             <span className="eyebrow">Location Map</span>
             <h2 style={{ fontSize: '2rem', fontWeight: 300, color: 'var(--text-primary)' }}>Sourcing &amp; Operations Hub</h2>
@@ -420,6 +421,90 @@ export default function ContactPage() {
               referrerPolicy="no-referrer-when-downgrade"
               title="Opésh Overseas Bhilwara Sourcing Hub Location"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* ── B2B FAQ Accordion Section ── */}
+      <section className="faq-section" data-reveal="up" style={{ paddingBottom: '6rem' }}>
+        <div className="section-inner">
+          <div className="centered-header" style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <span className="eyebrow">Trade Queries</span>
+            <h2 style={{ fontSize: '2.25rem', fontFamily: 'var(--font-display)', color: 'var(--text-primary)', fontWeight: 'normal' }}>Frequently Asked Questions</h2>
+            <div className="accent-rule" style={{ width: 80, height: 1, background: 'linear-gradient(90deg, transparent, var(--gold), transparent)', margin: '1rem auto' }} />
+          </div>
+
+          <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            {[
+              {
+                q: "What standard shipping terms (Incoterms) do you support?",
+                a: "We support FOB (Free On Board) from Mundra Port and Nhava Sheva (JNPT) ports, CIF (Cost, Insurance, and Freight) directly to your destination port of entry, and EXW (Ex-Works) from our sourcing warehouse in Bhilwara, Rajasthan."
+              },
+              {
+                q: "Do you provide batch Certificates of Analysis (COA) for Ayurvedic products?",
+                a: "Yes. Every batch of our organic moringa, herbal extracts, and Ayurvedic formulations undergoes testing at audited NABL-accredited partner laboratories. A full Certificate of Analysis (COA) detailing heavy metals, safety assays, and chemical purity is provided with standard shipping documentation."
+              },
+              {
+                q: "What is your Minimum Order Quantity (MOQ)?",
+                a: "Our MOQs vary by product category to ensure manufacturing freshness: 500 kg for bulk herbal powders/extracts, 100 units for premium handcrafted home textiles, and 50 units for heritage handicraft items. Contact our sales desk for custom or trial shipment exceptions."
+              },
+              {
+                q: "Are your manufacturing partners certified for international trade?",
+                a: "Absolutely. Our manufacturing partners operate in ISO 22000-certified and WHO-GMP compliant units. Opésh Overseas is also registered with MSME (Udyam), possesses an active Import Export Code (IEC), and is FSSAI compliant, ensuring seamless customs clearances."
+              },
+              {
+                q: "Can you accommodate custom B2B packaging and private labeling?",
+                a: "Yes. We offer vacuum sealing, moisture-controlled palletization, and custom cardboard packaging according to your business's specifications and labeling compliance laws in the receiving country."
+              }
+            ].map((faq, idx) => {
+              const isOpen = activeFaq === idx;
+              return (
+                <div 
+                  key={idx} 
+                  style={{
+                    background: 'linear-gradient(180deg, rgba(20, 34, 58, 0.38) 0%, rgba(10, 22, 40, 0.22) 100%)', 
+                    border: '1px solid rgba(232, 201, 122, 0.12)', 
+                    borderRadius: '8px',
+                    overflow: 'hidden',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  <button 
+                    onClick={() => setActiveFaq(isOpen ? null : idx)}
+                    style={{
+                      width: '100%',
+                      padding: '1.25rem 1.5rem',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      background: 'none',
+                      border: 'none',
+                      color: 'var(--text-primary)',
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '1.15rem',
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                      outline: 'none'
+                    }}
+                  >
+                    <span>{faq.q}</span>
+                    <span style={{ color: 'var(--gold)', fontSize: '1.2rem', transition: 'transform 0.3s ease', transform: isOpen ? 'rotate(45deg)' : 'none' }}>+</span>
+                  </button>
+                  <div 
+                    style={{
+                      maxHeight: isOpen ? '200px' : '0',
+                      transition: 'all 0.3s ease',
+                      opacity: isOpen ? 1 : 0,
+                      overflow: 'hidden'
+                    }}
+                  >
+                    <p style={{ padding: '0 1.5rem 1.25rem 1.5rem', fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
+                      {faq.a}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
