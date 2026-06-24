@@ -44,10 +44,23 @@ function usePathRoute() {
 export default function App() {
   const route = usePathRoute();
   const [theme, setTheme] = useState('dark');
+  const [showCookieBanner, setShowCookieBanner] = useState(false);
 
   useEffect(() => {
     document.body.classList.toggle('light-theme', theme === 'light');
   }, [theme]);
+
+  useEffect(() => {
+    const consent = localStorage.getItem('opesh_cookie_consent');
+    if (!consent) {
+      setShowCookieBanner(true);
+    }
+  }, []);
+
+  const acceptCookies = () => {
+    localStorage.setItem('opesh_cookie_consent', 'true');
+    setShowCookieBanner(false);
+  };
 
   // Dynamic document title and meta description updates on route change
   useEffect(() => {
@@ -611,6 +624,44 @@ export default function App() {
             <path d="M1 6h10M6 1l5 5-5 5" />
           </svg>
         </a>
+
+        {/* Cookie Consent Banner */}
+        {showCookieBanner && (
+          <div className="cookie-banner" style={{
+            position: 'fixed',
+            bottom: '20px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 'calc(100% - 40px)',
+            maxWidth: '600px',
+            background: 'rgba(5, 11, 20, 0.95)',
+            border: '1px solid rgba(232, 201, 122, 0.25)',
+            padding: '1.2rem 1.8rem',
+            borderRadius: '12px',
+            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)',
+            zIndex: 99999,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: '1.5rem',
+            backdropFilter: 'blur(8px)',
+            transition: 'all 0.3s ease'
+          }}>
+            <div style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: '1.5', textAlign: 'left' }}>
+              We use essential cookies to optimize your B2B sourcing experience, track visitor metrics, and improve our services in line with our <a href="/privacy" style={{ color: 'var(--gold, #c9a14a)', textDecoration: 'underline' }}>Privacy Policy</a>.
+            </div>
+            <button onClick={acceptCookies} className="btn-primary" style={{
+              padding: '0.5rem 1.2rem',
+              fontSize: '0.82rem',
+              whiteSpace: 'nowrap',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: 'pointer'
+            }}>
+              Accept All
+            </button>
+          </div>
+        )}
       </div>
     </>
   );
