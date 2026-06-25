@@ -11,20 +11,6 @@ export default function CompliancePage() {
 
   const certs = [
     {
-      title: 'MSME (Udyam) Registration',
-      subtitle: 'Ministry of MSME, Govt of India',
-      description: 'Opésh Overseas is officially registered under the Government of India\'s Micro, Small & Medium Enterprises (Udyam) framework, providing verified credibility and enabling business facilitation benefits.',
-      icon: (
-        <svg viewBox="0 0 40 40" className="cert-svg" style={{ color: '#0f4c81' }}>
-          <path d="M12 8h16a4 4 0 0 1 4 4v16a4 4 0 0 1 -4 4h-16a4 4 0 0 1 -4 -4v-16a4 4 0 0 1 4 -4z" fill="none" stroke="currentColor" strokeWidth="1.5" />
-          <circle cx="20" cy="17" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" />
-          <path d="M20 10v2M20 22v2M13 17h2M25 17h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M15 12l1.5 1.5M23.5 20.5l1.5 1.5M15 22l1.5-1.5M23.5 13.5l1.5-1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          <text x="20" y="30" textAnchor="middle" fontSize="4.2" fontWeight="bold" fill="currentColor" letterSpacing="0.8">MSME REG.</text>
-        </svg>
-      )
-    },
-    {
       title: 'Import Export Code (IEC)',
       subtitle: 'Directorate General of Foreign Trade',
       description: 'Authorized by the Ministry of Commerce & Industry, Government of India, for active global trade operations, enabling seamless customs clearances across air, sea, and land ports.',
@@ -49,18 +35,6 @@ export default function CompliancePage() {
           <path d="M16 22c0-4 3-6 5-6s4 2 4 6c0 4-4 6-5 6s-4-2-4-6z" fill="currentColor" opacity="0.8" />
           <text x="20" y="13" textAnchor="middle" fontSize="5.5" fontWeight="bold" fill="currentColor" letterSpacing="0.8">FSSAI</text>
           <text x="20" y="30" textAnchor="middle" fontSize="3.8" fontWeight="bold" fill="currentColor" letterSpacing="0.4">COMPLIANT</text>
-        </svg>
-      )
-    },
-    {
-      title: 'Sanstha Adhar No. (SAN)',
-      subtitle: 'Government Recognised & Granted Registration',
-      description: 'Officially granted a Sanstha Adhar Number (SAN) by the government, validating our corporate registration, B2B business status, and corporate eligibility for national export trade.',
-      icon: (
-        <svg viewBox="0 0 40 40" className="cert-svg" style={{ color: '#d84315' }}>
-          <rect x="5" y="5" width="30" height="30" rx="6" fill="none" stroke="currentColor" strokeWidth="1.5" />
-          <path d="M15 20v-3a5 5 0 0 1 10 0v3h1v8H14v-8h1zm2 0h6v-3a3 3 0 0 0-6 0v3z" fill="currentColor" opacity="0.8" />
-          <text x="20" y="31" textAnchor="middle" fontSize="4.2" fontWeight="bold" fill="currentColor" letterSpacing="0.5">SAN GOVT REG</text>
         </svg>
       )
     },
@@ -128,6 +102,32 @@ export default function CompliancePage() {
           <text x="14" y="17" textAnchor="middle" fontSize="5" fontWeight="bold" fill="#2e7d32">HALAL</text>
           <text x="26" y="17" textAnchor="middle" fontSize="5" fontWeight="bold" fill="#0f4c81">KOSHER</text>
           <text x="20" y="27" textAnchor="middle" fontSize="4" fontWeight="bold" fill="currentColor" letterSpacing="0.3">DIETARY COMPLIANT</text>
+        </svg>
+      )
+    },
+    {
+      title: 'MSME (Udyam) Registration',
+      subtitle: 'Ministry of MSME, Govt of India',
+      description: 'Opésh Overseas is officially registered under the Government of India\'s Micro, Small & Medium Enterprises (Udyam) framework, providing verified credibility and enabling business facilitation benefits.',
+      icon: (
+        <svg viewBox="0 0 40 40" className="cert-svg" style={{ color: '#0f4c81' }}>
+          <path d="M12 8h16a4 4 0 0 1 4 4v16a4 4 0 0 1 -4 4h-16a4 4 0 0 1 -4 -4v-16a4 4 0 0 1 4 -4z" fill="none" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="20" cy="17" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+          <path d="M20 10v2M20 22v2M13 17h2M25 17h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M15 12l1.5 1.5M23.5 20.5l1.5 1.5M15 22l1.5-1.5M23.5 13.5l1.5-1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <text x="20" y="30" textAnchor="middle" fontSize="4.2" fontWeight="bold" fill="currentColor" letterSpacing="0.8">MSME REG.</text>
+        </svg>
+      )
+    },
+    {
+      title: 'Sanstha Adhar No. (SAN)',
+      subtitle: 'Government Recognised & Granted Registration',
+      description: 'Officially granted a Sanstha Adhar Number (SAN) by the government, validating our corporate registration, B2B business status, and corporate eligibility for national export trade.',
+      icon: (
+        <svg viewBox="0 0 40 40" className="cert-svg" style={{ color: '#d84315' }}>
+          <rect x="5" y="5" width="30" height="30" rx="6" fill="none" stroke="currentColor" strokeWidth="1.5" />
+          <path d="M15 20v-3a5 5 0 0 1 10 0v3h1v8H14v-8h1zm2 0h6v-3a3 3 0 0 0-6 0v3z" fill="currentColor" opacity="0.8" />
+          <text x="20" y="31" textAnchor="middle" fontSize="4.2" fontWeight="bold" fill="currentColor" letterSpacing="0.5">SAN GOVT REG</text>
         </svg>
       )
     }

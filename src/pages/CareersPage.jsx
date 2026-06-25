@@ -99,26 +99,59 @@ export default function CareersPage() {
       </section>
 
       {/* ── How to Apply ── */}
-      <section className="careers-apply" style={{ borderTop: '1px solid rgba(232, 201, 122, 0.08)', padding: '5rem 0' }} aria-labelledby="apply-heading">
+      <section className="careers-apply-section" aria-labelledby="apply-heading">
         <div className="section-inner">
-          <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto' }}>
-            <h2 id="apply-heading" className="form-title" style={{ borderBottom: 'none', paddingBottom: 0, marginBottom: '1rem' }}>How to Join Our Team</h2>
-            <p className="success-notice" style={{ marginBottom: '2rem' }}>
-              We value hands-on operational excellence, communication skills, and absolute professional integrity. 
+          <div className="centered-header">
+            <span className="eyebrow" data-reveal="fade">Join Us</span>
+            <h2 id="apply-heading" data-reveal="up">Application &amp; Selection Process</h2>
+            <p className="pipeline-lead" data-reveal="up" data-reveal-delay="0.1">
+              Our recruitment process is designed to find individuals who resonate with our values of transparency, diligence, and global trade excellence.
             </p>
-            <div className="ref-badge" style={{ display: 'inline-flex', margin: '0 0 2rem 0' }}>
-              <span className="ref-label">Application Process</span>
-              <span className="ref-val">Email Your CV / Resume</span>
+          </div>
+
+          {/* Step Timeline */}
+          <div className="apply-steps-grid" data-reveal="up" data-reveal-delay="0.15">
+            <div className="apply-step-card">
+              <div className="step-num">01</div>
+              <h3>Explore Roles</h3>
+              <p>Review our active openings above or submit a speculative application. Pinpoint where your skills align with our supply chain or international accounts team.</p>
             </div>
-            <p style={{ fontSize: '1.1rem', color: 'var(--text-primary)', margin: '0 0 0.5rem 0' }}>
-              Send your application directly to:
-            </p>
-            <p style={{ fontSize: '1.4rem', color: 'var(--gold, #c9a14a)', fontWeight: '600', margin: 0 }}>
-              <a href="mailto:info@opeshoverseas.com" style={{ textDecoration: 'none' }}>info@opeshoverseas.com</a>
-            </p>
-            <p className="note-text" style={{ marginTop: '1.5rem' }}>
-              Please mention the role you are applying for in the email subject line (e.g. "Application for Sourcing Specialist").
-            </p>
+            
+            <div className="apply-step-card">
+              <div className="step-num">02</div>
+              <h3>Prepare Submission</h3>
+              <p>Ensure your CV highlights relevant certifications, language skills, operational expertise, or experience with B2B trade platforms and tools.</p>
+            </div>
+
+            <div className="apply-step-card">
+              <div className="step-num">03</div>
+              <h3>Submit Profile</h3>
+              <p>Email your documents directly to our HR desk. Every profile is manually evaluated by our team, and we aim to follow up within 5 business days.</p>
+            </div>
+          </div>
+
+          {/* Action Box */}
+          <div className="apply-action-box" data-reveal="up" data-reveal-delay="0.25">
+            <div className="action-box-content">
+              <h3>Start Your Journey With Opésh Overseas</h3>
+              <p>
+                Please email your CV/Resume along with a brief introductory cover letter to our recruitment desk. Mention the desired role in the subject line.
+              </p>
+              
+              <div className="email-cta-wrap">
+                <a href="mailto:info@opeshoverseas.com" className="apply-email-btn">
+                  <span className="btn-text">info@opeshoverseas.com</span>
+                  <span className="btn-icon">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 14, height: 14 }}>
+                      <path d="M1 3h14M1 3v10a1 1 0 001 1h12a1 1 0 001-1V3M1 3l7 5.5L15 3" />
+                    </svg>
+                  </span>
+                </a>
+              </div>
+              <span className="apply-action-note">
+                Direct Application Portal &bull; Response within 5 business days
+              </span>
+            </div>
           </div>
         </div>
       </section>

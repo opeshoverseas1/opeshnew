@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { initHomeAnimations, cleanupHomeAnimations, initPageAnimations, cleanupPageAnimations, initGlobeAnimation } from '../legacy-logic';
 
 export default function HomePage() {
-  const [videoSrc, setVideoSrc] = useState('');
+  const [videoSrc] = useState('https://res.cloudinary.com/dpclwaw7u/video/upload/q_auto,f_auto/v1754383351/video_lm0obz.mp4');
   const [globeLoaded, setGlobeLoaded] = useState(false);
 
   useEffect(() => {
@@ -10,17 +10,10 @@ export default function HomePage() {
     initHomeAnimations();
     initPageAnimations();
 
-    // Delay video loading to prioritize initial page load rendering
-    // Optimize URL with q_auto,f_auto for automatic format and quality compression
-    const timer = setTimeout(() => {
-      setVideoSrc('https://res.cloudinary.com/dpclwaw7u/video/upload/q_auto,f_auto/v1754383351/video_lm0obz.mp4');
-    }, 1200);
-
     return () => {
       // Unmount cleanup
       cleanupHomeAnimations();
       cleanupPageAnimations();
-      clearTimeout(timer);
     };
   }, []);
 
@@ -48,13 +41,11 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ═══════════════════════════════════════════════
-         HERO SECTION
-      ═══════════════════════════════════════════════ */}
+      {/* ── HERO SECTION ── */}
       <section id="hero" aria-label="Hero — Opésh Overseas export house">
         <div className="hero-video-wrap" aria-hidden="true">
           <div className="hero-video-fallback" />
-          <video autoPlay muted loop playsInline preload="none" aria-hidden="true">
+          <video autoPlay muted loop playsInline preload="auto" poster="/assets/video-poster.webp" aria-hidden="true">
             {videoSrc && <source src={videoSrc} type="video/mp4" />}
           </video>
         </div>

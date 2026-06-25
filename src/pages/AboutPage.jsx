@@ -57,7 +57,12 @@ export default function AboutPage() {
         <div className="section-inner">
           <div className="mission-grid">
             <div className="pillar-card" data-reveal="up" data-reveal-delay="0.0">
-              <span className="pillar-ico">👁️</span>
+              <span className="pillar-ico">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#e8c97a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                  <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </span>
               <h3>Our Vision</h3>
               <p>
                 To be the world’s most trusted gatekeeper of premium Indian goods, recognized for elevating heritage workmanship and natural sciences into global market standouts through absolute documentation transparency.
@@ -65,7 +70,13 @@ export default function AboutPage() {
             </div>
             
             <div className="pillar-card" data-reveal="up" data-reveal-delay="0.1">
-              <span className="pillar-ico">🎯</span>
+              <span className="pillar-ico">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#e8c97a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                  <circle cx="12" cy="12" r="10"/>
+                  <circle cx="12" cy="12" r="6"/>
+                  <circle cx="12" cy="12" r="2"/>
+                </svg>
+              </span>
               <h3>Our Mission</h3>
               <p>
                 To provide international enterprise buyers with direct procurement options, absolute certification security, and end-to-end shipping efficiency, while supporting local artisanal and agrarian communities in India.
