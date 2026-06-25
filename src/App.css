@@ -1704,31 +1704,17 @@ body.light-theme .hero-cat-sep {
   background: rgba(10, 46, 92, 0.15) !important;
 }
 
-body.light-theme .hero-cat.handicraft {
+body.light-theme .hero-cat.ayurveda,
+body.light-theme .hero-cat.handicraft,
+body.light-theme .hero-cat.textile {
   background: rgba(0, 122, 204, 0.06) !important;
   border-color: rgba(0, 122, 204, 0.22) !important;
   color: var(--gold) !important;
 }
-body.light-theme .hero-cat.handicraft .hero-cat-dot {
-  background: var(--gold) !important;
-}
-
-body.light-theme .hero-cat.ayurveda {
-  background: rgba(42, 122, 110, 0.08) !important;
-  border-color: rgba(42, 122, 110, 0.25) !important;
-  color: #1b6357 !important;
-}
-body.light-theme .hero-cat.ayurveda .hero-cat-dot {
-  background: #1b6357 !important;
-}
-
-body.light-theme .hero-cat.textile {
-  background: rgba(168, 50, 64, 0.08) !important;
-  border-color: rgba(168, 50, 64, 0.25) !important;
-  color: #902431 !important;
-}
+body.light-theme .hero-cat.ayurveda .hero-cat-dot,
+body.light-theme .hero-cat.handicraft .hero-cat-dot,
 body.light-theme .hero-cat.textile .hero-cat-dot {
-  background: #902431 !important;
+  background: var(--gold) !important;
 }
 
 body.light-theme .stat-pill {
@@ -2053,6 +2039,208 @@ body.light-theme .showcase-fallback {
   .showcase-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   CAREERS PAGE APPLICATION SECTION
+   ═══════════════════════════════════════════════ */
+.careers-apply-section {
+  padding: clamp(4rem, 8vw, 8rem) 0;
+  border-top: 1px solid rgba(232, 201, 122, 0.08);
+  background: radial-gradient(circle at 50% 100%, rgba(20, 34, 58, 0.25) 0%, transparent 70%);
+}
+
+.apply-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+}
+
+.apply-step-card {
+  position: relative;
+  padding: 2.2rem 2rem;
+  background: linear-gradient(180deg, rgba(20, 34, 58, 0.4) 0%, rgba(10, 22, 40, 0.2) 100%);
+  border: 1px solid rgba(232, 201, 122, 0.12);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.4s var(--ease-out);
+}
+
+.apply-step-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(232, 201, 122, 0.3);
+  box-shadow: 0 12px 30px rgba(10, 22, 40, 0.4);
+}
+
+.apply-step-card .step-num {
+  font-size: 2.8rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--gold, #c9a14a) 0%, #f4ecd6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.85;
+  margin-bottom: 1rem;
+}
+
+.apply-step-card h3 {
+  font-size: 1.35rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+  margin: 0 0 0.8rem 0;
+}
+
+.apply-step-card p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Action Box */
+.apply-action-box {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, rgba(10, 34, 76, 0.4) 0%, rgba(6, 16, 32, 0.5) 100%);
+  border: 1px solid rgba(232, 201, 122, 0.18);
+  border-radius: 16px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+}
+
+.apply-action-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold, #c9a14a), transparent);
+}
+
+.action-box-content h3 {
+  font-size: clamp(1.5rem, 2.5vw, 1.8rem);
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+}
+
+.action-box-content p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 2.2rem;
+}
+
+.email-cta-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.apply-email-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 2.4rem;
+  background: linear-gradient(135deg, var(--gold, #c9a14a) 0%, #a88034 100%);
+  color: #050a12;
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 30px;
+  box-shadow: 0 8px 24px rgba(201, 161, 74, 0.2);
+  transition: all 0.4s var(--ease-out);
+}
+
+.apply-email-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(201, 161, 74, 0.35);
+  filter: brightness(1.1);
+}
+
+.apply-email-btn .btn-text {
+  font-size: 1.15rem;
+  letter-spacing: 0.05em;
+}
+
+.apply-email-btn .btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: rgba(5, 10, 18, 0.15);
+  border-radius: 50%;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.apply-email-btn:hover .btn-icon {
+  transform: translateX(2px);
+}
+
+.apply-action-note {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Light Theme Overrides */
+body.light-theme .careers-apply-section {
+  background: radial-gradient(circle at 50% 100%, rgba(0, 122, 204, 0.02) 0%, transparent 70%);
+}
+
+body.light-theme .apply-step-card {
+  background: #ffffff;
+  border-color: rgba(0, 122, 204, 0.1);
+  box-shadow: 0 4px 20px rgba(10, 46, 92, 0.02);
+}
+
+body.light-theme .apply-step-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 10px 30px rgba(10, 46, 92, 0.06);
+}
+
+body.light-theme .apply-step-card h3 {
+  color: var(--text-primary);
+}
+
+body.light-theme .apply-step-card p {
+  color: var(--text-secondary);
+}
+
+body.light-theme .apply-action-box {
+  background: linear-gradient(135deg, rgba(240, 248, 255, 0.95) 0%, rgba(255, 255, 255, 1) 100%);
+  border-color: rgba(0, 122, 204, 0.15);
+  box-shadow: 0 10px 40px rgba(10, 46, 92, 0.04);
+}
+
+body.light-theme .apply-email-btn {
+  color: #ffffff !important;
+  box-shadow: 0 8px 24px rgba(201, 161, 74, 0.15);
+}
+
+body.light-theme .apply-email-btn .btn-icon {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .apply-steps-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 
