@@ -597,10 +597,10 @@ export async function initGlobeAnimation() {
 
   globe = new ThreeGlobe({ waitForGlobeReady: true, animateIn: false })
     .globeImageUrl(isLight 
-      ? '/assets/globe/earth-blue-marble.webp'
-      : '/assets/globe/earth-night.webp'
+      ? '/assets/logos/globe/earth-blue-marble.webp'
+      : '/assets/logos/globe/earth-night.webp'
     )
-    .bumpImageUrl('/assets/globe/earth-topology.webp')
+    .bumpImageUrl('/assets/logos/globe/earth-topology.webp')
     .showAtmosphere(true)
     .atmosphereColor(brandColor)
     .atmosphereAltitude(0.18)
@@ -716,8 +716,8 @@ export function handleThemeChangeInGlobe() {
   
   // Update globe material and image dynamically
   globe.globeImageUrl(isLight 
-    ? '/assets/globe/earth-blue-marble.webp' 
-    : '/assets/globe/earth-night.webp'
+    ? '/assets/logos/globe/earth-blue-marble.webp' 
+    : '/assets/logos/globe/earth-night.webp'
   );
 
   const gm = globe.globeMaterial();
