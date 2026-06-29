@@ -54,46 +54,29 @@ export default function HomePage() {
           <div className="hero-glass-card">
             <div className="hero-badge" id="heroBadge">
               <span className="hero-badge-dot" aria-hidden="true" />
-              Delhi &amp; Bhilwara, India &nbsp;·&nbsp; Exporting to 30+ Nations
+              ✦ Sourcing &amp; Production Partner
             </div>
             
             <h1 className="hero-h1" id="heroH1">
-              <span className="line-1">India's Premier</span>
-              <span className="line-2"><em className="em-gold">B2B Sourcing</em></span>
-              <span className="line-3">&amp; Global Export House</span>
+              <span className="line-1">India's Finest,</span>
+              <span className="line-2"><em className="em-gold">Delivered Globally</em></span>
             </h1>
           </div>
           
           <p className="hero-sub" id="heroSub">
-            Direct-from-source procurement, strict compliance certification, and global logistics for premium Ayurvedic products, handcrafted textiles, and heritage artisanry.
+            Ayurvedic &nbsp;·&nbsp; Handicrafts &nbsp;·&nbsp; Luxury Textiles
+            <span style={{ display: 'block', marginTop: '0.4rem', opacity: 0.85, fontSize: '0.92em', letterSpacing: '0.08em' }}>From India to the world</span>
           </p>
           
-          <div className="hero-cats" id="heroCats">
-            <span className="hero-cat ayurveda">
-              <span className="hero-cat-dot" aria-hidden="true" />
-              Ayurveda &amp; Herbal
-            </span>
-            <span className="hero-cat-sep" aria-hidden="true" />
-            <span className="hero-cat handicraft">
-              <span className="hero-cat-dot" aria-hidden="true" />
-              Handcrafted Artisanry
-            </span>
-            <span className="hero-cat-sep" aria-hidden="true" />
-            <span className="hero-cat textile">
-              <span className="hero-cat-dot" aria-hidden="true" />
-              Luxury Home Textiles
-            </span>
-          </div>
-          
           <div className="hero-actions" id="heroActions">
-            <a href="/products" className="btn-primary" aria-label="Request export product catalogs">
-              Request B2B Catalog
+            <a href="/products" className="btn-primary" aria-label="Explore products">
+              Explore Products
               <svg viewBox="0 0 12 12" aria-hidden="true">
                 <path d="M1 6h10M6 1l5 5-5 5" />
               </svg>
             </a>
-            <a href="/contact" className="btn-ghost" aria-label="Send an export pricing enquiry">
-              Request FOB Pricing
+            <a href="/contact" className="btn-ghost" aria-label="Request a quote">
+              Request Quote
             </a>
           </div>
           
@@ -251,20 +234,6 @@ export default function HomePage() {
           <div className="certs-grid">
             <div className="cert-card" data-reveal="up" data-reveal-delay="0.0">
               <span className="cert-icon" aria-hidden="true">
-                <svg viewBox="0 0 40 40" className="cert-svg" style={{ color: '#0f4c81' }}>
-                  <path d="M12 8h16a4 4 0 0 1 4 4v16a4 4 0 0 1 -4 4h-16a4 4 0 0 1 -4 -4v-16a4 4 0 0 1 4 -4z" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                  <circle cx="20" cy="17" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M20 10v2M20 22v2M13 17h2M25 17h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  <path d="M15 12l1.5 1.5M23.5 20.5l1.5 1.5M15 22l1.5-1.5M23.5 13.5l1.5-1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  <text x="20" y="30" textAnchor="middle" fontSize="4.2" fontWeight="bold" fill="currentColor" letterSpacing="0.8">MSME REG.</text>
-                </svg>
-              </span>
-              <h3>MSME (Udyam) Registration</h3>
-              <p>Government of India registered for credibility and business facilitation.</p>
-            </div>
-            
-            <div className="cert-card" data-reveal="up" data-reveal-delay="0.1">
-              <span className="cert-icon" aria-hidden="true">
                 <svg viewBox="0 0 40 40" className="cert-svg" style={{ color: '#003399' }}>
                   <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" strokeWidth="1.5" />
                   <ellipse cx="20" cy="20" rx="18" ry="6" fill="none" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
@@ -276,6 +245,21 @@ export default function HomePage() {
               </span>
               <h3>Import Export Code (IEC)</h3>
               <p>Authorized for global trade, enabling smooth customs clearance.</p>
+            </div>
+
+            <div className="cert-card" data-reveal="up" data-reveal-delay="0.1">
+              <span className="cert-icon" aria-hidden="true">
+                <svg viewBox="0 0 40 40" className="cert-svg" style={{ color: '#0f4c81' }}>
+                  <rect x="4" y="6" width="32" height="28" rx="4" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                  <rect x="6" y="8" width="13" height="13" rx="2" fill="currentColor" opacity="0.9" />
+                  <text x="12.5" y="17" textAnchor="middle" fontSize="6.5" fontWeight="900" fill="#ffffff">ISO</text>
+                  <circle cx="27.5" cy="14.5" r="6.5" fill="#2e7d32" opacity="0.9" />
+                  <text x="27.5" y="17" textAnchor="middle" fontSize="5.5" fontWeight="900" fill="#ffffff">GMP</text>
+                  <text x="20" y="30" textAnchor="middle" fontSize="4.2" fontWeight="bold" fill="currentColor" letterSpacing="0.5">QUALITY CERTIFIED</text>
+                </svg>
+              </span>
+              <h3>ISO 22000 &amp; GMP</h3>
+              <p>Manufacturing partners operate in ISO 22000-certified and GMP-compliant units.</p>
             </div>
 
             <div className="cert-card" data-reveal="up" data-reveal-delay="0.2">
@@ -293,33 +277,6 @@ export default function HomePage() {
 
             <div className="cert-card" data-reveal="up" data-reveal-delay="0.3">
               <span className="cert-icon" aria-hidden="true">
-                <svg viewBox="0 0 40 40" className="cert-svg" style={{ color: '#d84315' }}>
-                  <rect x="5" y="5" width="30" height="30" rx="6" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M15 20v-3a5 5 0 0 1 10 0v3h1v8H14v-8h1zm2 0h6v-3a3 3 0 0 0-6 0v3z" fill="currentColor" opacity="0.8" />
-                  <text x="20" y="31" textAnchor="middle" fontSize="4.2" fontWeight="bold" fill="currentColor" letterSpacing="0.5">SAN GOVT REG</text>
-                </svg>
-              </span>
-              <h3>Sanstha Adhar No. (SAN)</h3>
-              <p>Recognised and granted SAN by government.</p>
-            </div>
-
-            <div className="cert-card" data-reveal="up" data-reveal-delay="0.4">
-              <span className="cert-icon" aria-hidden="true">
-                <svg viewBox="0 0 40 40" className="cert-svg" style={{ color: '#0f4c81' }}>
-                  <rect x="4" y="6" width="32" height="28" rx="4" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                  <rect x="6" y="8" width="13" height="13" rx="2" fill="currentColor" opacity="0.9" />
-                  <text x="12.5" y="17" textAnchor="middle" fontSize="6.5" fontWeight="900" fill="#ffffff">ISO</text>
-                  <circle cx="27.5" cy="14.5" r="6.5" fill="#2e7d32" opacity="0.9" />
-                  <text x="27.5" y="17" textAnchor="middle" fontSize="5.5" fontWeight="900" fill="#ffffff">GMP</text>
-                  <text x="20" y="30" textAnchor="middle" fontSize="4.2" fontWeight="bold" fill="currentColor" letterSpacing="0.5">QUALITY CERTIFIED</text>
-                </svg>
-              </span>
-              <h3>ISO 22000 &amp; GMP</h3>
-              <p>Manufacturing partners operate in ISO 22000-certified and GMP-compliant units.</p>
-            </div>
-
-            <div className="cert-card" data-reveal="up" data-reveal-delay="0.5">
-              <span className="cert-icon" aria-hidden="true">
                 <svg viewBox="0 0 40 40" className="cert-svg" style={{ color: '#2e7d32' }}>
                   <path d="M20 4 L34 8 V18 C34 26 20 34 20 36 C20 34 6 26 6 18 V8 L20 4 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
                   <path d="M14 20 l4 4 l9-9" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -327,8 +284,35 @@ export default function HomePage() {
                   <text x="20" y="30" textAnchor="middle" fontSize="3.8" fontWeight="bold" fill="currentColor" letterSpacing="0.5">CERTIFIED</text>
                 </svg>
               </span>
-              <h3>HACCP</h3>
+              <h3>HACCP Compliance</h3>
               <p>Hazard Analysis and Critical Control Points framework applied to ensure product safety.</p>
+            </div>
+
+            <div className="cert-card" data-reveal="up" data-reveal-delay="0.4">
+              <span className="cert-icon" aria-hidden="true">
+                <svg viewBox="0 0 40 40" className="cert-svg" style={{ color: '#0f4c81' }}>
+                  <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M9 20h22" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
+                  <text x="14" y="17" textAnchor="middle" fontSize="5" fontWeight="bold" fill="#2e7d32">HALAL</text>
+                  <text x="26" y="17" textAnchor="middle" fontSize="5" fontWeight="bold" fill="#0f4c81">KOSHER</text>
+                  <text x="20" y="27" textAnchor="middle" fontSize="4" fontWeight="bold" fill="currentColor" letterSpacing="0.3">DIETARY COMPLIANT</text>
+                </svg>
+              </span>
+              <h3>Halal &amp; Kosher Sourced</h3>
+              <p>Raw products conform to halal and kosher purity requirements for global distribution.</p>
+            </div>
+
+            <div className="cert-card" data-reveal="up" data-reveal-delay="0.5">
+              <span className="cert-icon" aria-hidden="true">
+                <svg viewBox="0 0 40 40" className="cert-svg" style={{ color: '#c62828' }}>
+                  <rect x="5" y="5" width="30" height="30" rx="4" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M12 13h16M12 18h16M12 23h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  <circle cx="26" cy="24" r="4" fill="currentColor" opacity="0.8" />
+                  <path d="M24 24l1.5 1.5l2.5-2.5" stroke="#ffffff" strokeWidth="1" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <h3>Batch CoAs &amp; MSDS</h3>
+              <p>Complete Material Safety Data Sheets and lab Certificates of Analysis issued for every batch.</p>
             </div>
           </div>
         </div>
