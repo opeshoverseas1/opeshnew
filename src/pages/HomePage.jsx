@@ -54,29 +54,46 @@ export default function HomePage() {
           <div className="hero-glass-card">
             <div className="hero-badge" id="heroBadge">
               <span className="hero-badge-dot" aria-hidden="true" />
-              ✦ Sourcing &amp; Production Partner
+              Delhi &amp; Bhilwara, India &nbsp;·&nbsp; Exporting to 30+ Nations
             </div>
             
             <h1 className="hero-h1" id="heroH1">
-              <span className="line-1">India's Finest,</span>
-              <span className="line-2"><em className="em-gold">Delivered Globally</em></span>
+              <span className="line-1">India's Premier</span>
+              <span className="line-2"><em className="em-gold">B2B Sourcing</em></span>
+              <span className="line-3">&amp; Global Export House</span>
             </h1>
           </div>
           
           <p className="hero-sub" id="heroSub">
-            Ayurvedic &nbsp;·&nbsp; Handicrafts &nbsp;·&nbsp; Luxury Textiles
-            <span style={{ display: 'block', marginTop: '0.4rem', opacity: 0.85, fontSize: '0.92em', letterSpacing: '0.08em' }}>From India to the world</span>
+            Direct-from-source procurement, strict compliance certification, and global logistics for premium Ayurvedic products, handcrafted textiles, and heritage artisanry.
           </p>
           
+          <div className="hero-cats" id="heroCats">
+            <span className="hero-cat ayurveda">
+              <span className="hero-cat-dot" aria-hidden="true" />
+              Ayurveda &amp; Herbal
+            </span>
+            <span className="hero-cat-sep" aria-hidden="true" />
+            <span className="hero-cat handicraft">
+              <span className="hero-cat-dot" aria-hidden="true" />
+              Handcrafted Artisanry
+            </span>
+            <span className="hero-cat-sep" aria-hidden="true" />
+            <span className="hero-cat textile">
+              <span className="hero-cat-dot" aria-hidden="true" />
+              Luxury Home Textiles
+            </span>
+          </div>
+          
           <div className="hero-actions" id="heroActions">
-            <a href="/products" className="btn-primary" aria-label="Explore products">
-              Explore Products
+            <a href="/products" className="btn-primary" aria-label="Request export product catalogs">
+              Request B2B Catalog
               <svg viewBox="0 0 12 12" aria-hidden="true">
                 <path d="M1 6h10M6 1l5 5-5 5" />
               </svg>
             </a>
-            <a href="/contact" className="btn-ghost" aria-label="Request a quote">
-              Request Quote
+            <a href="/contact" className="btn-ghost" aria-label="Send an export pricing enquiry">
+              Request FOB Pricing
             </a>
           </div>
           
