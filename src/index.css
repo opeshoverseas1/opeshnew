@@ -1372,14 +1372,16 @@ p {
     padding-bottom: 4rem;
   }
 
+  .hero-video-wrap,
+  .hero-video-fallback,
+  body.light-theme .hero-video-wrap,
+  body.light-theme .hero-video-fallback {
+    background: #050b14 !important;
+  }
+
   .hero-video-wrap video {
-    width: 130% !important;
-    height: 100% !important;
-    left: -15% !important;
-    position: absolute !important;
-    top: 0 !important;
-    object-fit: fill !important;
-    transform: none !important;
+    transform: scale(0.88) !important;
+    transform-origin: center center !important;
   }
 
   .hero-h1 .line-2 {
