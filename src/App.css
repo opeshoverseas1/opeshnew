@@ -1297,10 +1297,11 @@ body.light-theme .nav-cta:hover {
 
 /* Mobile Menu Overrides */
 body.light-theme #mobile-menu {
-  background: rgba(240, 248, 255, 0.65) !important;
-  backdrop-filter: blur(24px) saturate(1.6) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(1.6) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(30px) saturate(1.8) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(1.8) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 20px 80px rgba(10, 46, 92, 0.05) !important;
 }
 body.light-theme #mobile-menu::before {
   background: linear-gradient(90deg, transparent, var(--gold), transparent) !important;

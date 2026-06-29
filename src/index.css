@@ -457,11 +457,9 @@ p {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--gold-dim);
+  background: var(--gold);
   transition: background 0.3s;
 }
-.pre-dot-circle.jade    { background: var(--jade); }
-.pre-dot-circle.crimson { background: var(--crimson); }
 .pre-dot-label {
   font-size: 0.58rem;
   letter-spacing: 0.2em;
@@ -481,7 +479,7 @@ p {
 .pre-bar-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--jade), var(--gold));
+  background: linear-gradient(90deg, rgba(201, 161, 74, 0.25), var(--gold));
   /* width animated by GSAP */
 }
 
@@ -788,9 +786,10 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.25rem;
-  padding: var(--nav-h) var(--gutter) 3rem;
+  padding: calc(var(--nav-h) + 3rem) var(--gutter) 3rem;
+  overflow-y: auto;
 
   /* Hidden state */
   opacity: 0;

@@ -411,43 +411,40 @@ export async function initHomeAnimations() {
 
   /* ── 4. Hero Entrance Animation ── */
   function runRefinedEntrance() {
-    const navBrand = document.querySelector('.nav-brand');
-    const navLinks = document.querySelectorAll('#navbar nav .nav-links > li');
-    const heroEls  = ['#heroBadge','#heroH1','#heroSub','#heroCats','#heroActions','#heroStats','#scrollCue'];
+    const navbar = document.getElementById('navbar');
+    const heroEls  = ['#heroBadge','#heroH1','#heroSub','#heroActions','#heroStats','#scrollCue'];
 
     if (reduced) {
-      if (navBrand) gsap.set(navBrand, { opacity: 1, y: 0 });
+      if (navbar) gsap.set(navbar, { opacity: 1, y: 0 });
       gsap.set(heroEls, { opacity: 1, y: 0 });
       document.body.classList.add('hero-dimmed');
       return;
     }
 
-    if (navBrand) gsap.set(navBrand, { opacity: 0, y: -6 });
-    gsap.set(navLinks, { opacity: 0, y: -4 });
+    if (navbar) gsap.set(navbar, { opacity: 0, y: -15 });
     gsap.set(heroEls, { opacity: 0, y: 24 });
     gsap.set('.floating-enquiry', { opacity: 0, scale: 0.8 });
     document.body.classList.remove('hero-dimmed');
 
     const tlHero = gsap.timeline({ defaults: { ease: 'power2.out' } });
     
-    tlHero.to(navBrand, { opacity: 1, y: 0, duration: 0.8 }, 1.0)
-          .to(navLinks, { opacity: 1, y: 0, duration: 0.7, stagger: 0.05 }, 1.0)
-          .to('#heroBadge', { opacity: 1, y: 0, duration: 0.7 }, 1.1)
-          .to('#heroH1', { opacity: 1, y: 0, duration: 0.9 }, 1.2)
-          .to('#heroSub', { opacity: 1, y: 0, duration: 0.8 }, 1.3)
-          .to('#heroCats', { opacity: 1, y: 0, duration: 0.7 }, 1.4)
-          .to('#heroActions', { opacity: 1, y: 0, duration: 0.7 }, 1.4)
-          .to('#heroStats', { opacity: 1, y: 0, duration: 0.8 }, 1.5)
-          .to('#scrollCue', { opacity: 1, duration: 0.7 }, 1.6)
-          .to('.floating-enquiry', { opacity: 1, scale: 1, duration: 0.8 }, 1.5);
+    // Video plays alone for 1.2s after preloader, then everything fades in.
+    tlHero.to(navbar, { opacity: 1, y: 0, duration: 1.0 }, 1.2)
+          .to('#heroBadge', { opacity: 1, y: 0, duration: 0.7 }, 1.4)
+          .to('#heroH1', { opacity: 1, y: 0, duration: 0.9 }, 1.5)
+          .to('#heroSub', { opacity: 1, y: 0, duration: 0.8 }, 1.7)
+          .to('#heroActions', { opacity: 1, y: 0, duration: 0.7 }, 1.9)
+          .to('#heroStats', { opacity: 1, y: 0, duration: 0.8 }, 2.0)
+          .to('#scrollCue', { opacity: 1, duration: 0.7 }, 2.2)
+          .to('.floating-enquiry', { opacity: 1, scale: 1, duration: 0.8 }, 2.1);
 
     tlHero.add(function () {
       document.body.classList.add('hero-dimmed');
-    }, 2.0);
+    }, 2.5);
 
     // Trigger counters
     document.querySelectorAll('.stat-pill-num[data-counter]').forEach(el => {
-      animateCounter(el, 1.6);
+      animateCounter(el, 2.1);
     });
   }
 
@@ -597,10 +594,10 @@ export async function initGlobeAnimation() {
 
   globe = new ThreeGlobe({ waitForGlobeReady: true, animateIn: false })
     .globeImageUrl(isLight 
-      ? '/assets/logos/globe/earth-blue-marble.webp'
-      : '/assets/logos/globe/earth-night.webp'
+      ? '/assets/globe/earth-blue-marble.webp'
+      : '/assets/globe/earth-night.webp'
     )
-    .bumpImageUrl('/assets/logos/globe/earth-topology.webp')
+    .bumpImageUrl('/assets/globe/earth-topology.webp')
     .showAtmosphere(true)
     .atmosphereColor(brandColor)
     .atmosphereAltitude(0.18)
@@ -716,8 +713,8 @@ export function handleThemeChangeInGlobe() {
   
   // Update globe material and image dynamically
   globe.globeImageUrl(isLight 
-    ? '/assets/logos/globe/earth-blue-marble.webp' 
-    : '/assets/logos/globe/earth-night.webp'
+    ? '/assets/globe/earth-blue-marble.webp' 
+    : '/assets/globe/earth-night.webp'
   );
 
   const gm = globe.globeMaterial();

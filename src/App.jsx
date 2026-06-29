@@ -270,15 +270,15 @@ export default function App() {
           </div>
           <div className="pre-dots" id="preDots">
             <div className="pre-dot">
-              <div className="pre-dot-circle jade" />
+              <div className="pre-dot-circle" />
               <span className="pre-dot-label">Ayurveda</span>
             </div>
             <div className="pre-dot">
-              <div className="pre-dot-circle" style={{ background: 'var(--gold)' }} />
+              <div className="pre-dot-circle" />
               <span className="pre-dot-label">Handicrafts</span>
             </div>
             <div className="pre-dot">
-              <div className="pre-dot-circle crimson" />
+              <div className="pre-dot-circle" />
               <span className="pre-dot-label">Textiles</span>
             </div>
           </div>
