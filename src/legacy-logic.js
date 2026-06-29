@@ -411,10 +411,13 @@ export async function initHomeAnimations() {
 
   /* ── 4. Hero Entrance Animation ── */
   function runRefinedEntrance() {
+    const navBrand = document.querySelector('.nav-brand');
+    const navLinks = document.querySelectorAll('#navbar nav .nav-links > li');
     const navbar = document.getElementById('navbar');
-    const heroEls  = ['#heroBadge','#heroH1','#heroSub','#heroActions','#heroStats','#scrollCue'];
+    const heroEls  = ['#heroBadge','#heroH1','#heroSub','#heroCats','#heroActions','#heroStats','#scrollCue'];
 
     if (reduced) {
+      if (navBrand) gsap.set(navBrand, { opacity: 1, y: 0 });
       if (navbar) gsap.set(navbar, { opacity: 1, y: 0 });
       gsap.set(heroEls, { opacity: 1, y: 0 });
       document.body.classList.add('hero-dimmed');
@@ -422,6 +425,8 @@ export async function initHomeAnimations() {
     }
 
     if (navbar) gsap.set(navbar, { opacity: 0, y: -15 });
+    if (navBrand) gsap.set(navBrand, { opacity: 0, y: -6 });
+    gsap.set(navLinks, { opacity: 0, y: -4 });
     gsap.set(heroEls, { opacity: 0, y: 24 });
     gsap.set('.floating-enquiry', { opacity: 0, scale: 0.8 });
     document.body.classList.remove('hero-dimmed');
@@ -430,21 +435,24 @@ export async function initHomeAnimations() {
     
     // Video plays alone for 1.2s after preloader, then everything fades in.
     tlHero.to(navbar, { opacity: 1, y: 0, duration: 1.0 }, 1.2)
+          .to(navBrand, { opacity: 1, y: 0, duration: 0.8 }, 1.3)
+          .to(navLinks, { opacity: 1, y: 0, duration: 0.7, stagger: 0.05 }, 1.3)
           .to('#heroBadge', { opacity: 1, y: 0, duration: 0.7 }, 1.4)
           .to('#heroH1', { opacity: 1, y: 0, duration: 0.9 }, 1.5)
-          .to('#heroSub', { opacity: 1, y: 0, duration: 0.8 }, 1.7)
-          .to('#heroActions', { opacity: 1, y: 0, duration: 0.7 }, 1.9)
-          .to('#heroStats', { opacity: 1, y: 0, duration: 0.8 }, 2.0)
-          .to('#scrollCue', { opacity: 1, duration: 0.7 }, 2.2)
-          .to('.floating-enquiry', { opacity: 1, scale: 1, duration: 0.8 }, 2.1);
+          .to('#heroSub', { opacity: 1, y: 0, duration: 0.8 }, 1.6)
+          .to('#heroCats', { opacity: 1, y: 0, duration: 0.7 }, 1.7)
+          .to('#heroActions', { opacity: 1, y: 0, duration: 0.7 }, 1.7)
+          .to('#heroStats', { opacity: 1, y: 0, duration: 0.8 }, 1.8)
+          .to('#scrollCue', { opacity: 1, duration: 0.7 }, 1.9)
+          .to('.floating-enquiry', { opacity: 1, scale: 1, duration: 0.8 }, 1.8);
 
     tlHero.add(function () {
       document.body.classList.add('hero-dimmed');
-    }, 2.5);
+    }, 2.4);
 
     // Trigger counters
     document.querySelectorAll('.stat-pill-num[data-counter]').forEach(el => {
-      animateCounter(el, 2.1);
+      animateCounter(el, 1.9);
     });
   }
 
