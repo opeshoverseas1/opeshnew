@@ -779,7 +779,7 @@ p {
   position: fixed;
   inset: 0;
   z-index: 998;
-  background: rgba(8, 17, 34, 0.97);
+  background: rgba(8, 17, 34, 0.98);
   backdrop-filter: blur(24px) saturate(1.4);
   -webkit-backdrop-filter: blur(24px) saturate(1.4);
 
