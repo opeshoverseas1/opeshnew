@@ -1372,17 +1372,7 @@ p {
     padding-bottom: 4rem;
   }
 
-  .hero-video-wrap,
-  .hero-video-fallback,
-  body.light-theme .hero-video-wrap,
-  body.light-theme .hero-video-fallback {
-    background: #050b14 !important;
-  }
-
-  .hero-video-wrap video {
-    transform: scale(0.88) !important;
-    transform-origin: center center !important;
-  }
+  /* Reverted to default object-fit: cover */
 
   .hero-h1 .line-2 {
     padding-left: 0; /* remove indent on mobile */
