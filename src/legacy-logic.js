@@ -270,6 +270,18 @@ export function initGlobals() {
 }
 
 export async function initHomeAnimations() {
+  // Instantly hide navbar and hero elements on mount to prevent any visual flashing when preloader fades out
+  const navbar = document.getElementById('navbar');
+  const navBrand = document.querySelector('.nav-brand');
+  const navLinks = document.querySelectorAll('#navbar nav .nav-links > li');
+  const heroEls  = ['#heroBadge','#heroH1','#heroSub','#heroCats','#heroActions','#heroStats','#scrollCue'];
+  
+  if (navbar) gsap.set(navbar, { opacity: 0, y: -15 });
+  if (navBrand) gsap.set(navBrand, { opacity: 0, y: -6 });
+  gsap.set(navLinks, { opacity: 0, y: -4 });
+  gsap.set(heroEls, { opacity: 0, y: 24 });
+  gsap.set('.floating-enquiry', { opacity: 0, scale: 0.8 });
+
   if (homeScrollTriggers.length > 0) return; // already running
 
   const overlay = document.getElementById('grOverlay');
