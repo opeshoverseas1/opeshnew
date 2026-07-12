@@ -367,7 +367,7 @@ export default function ContactPage() {
                     <span className="info-icon">💼</span>
                     <div>
                       <strong>B2B Sales Department:</strong>
-                      <p><a href="mailto:sales@opeshoverseas.com">sales@opeshoverseas.com</a></p>
+                      <p><a href="mailto:sales@opeshoverseas.com">exports@opeshoverseas.com</a></p>
                     </div>
                   </div>
 
