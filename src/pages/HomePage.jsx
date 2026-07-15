@@ -39,6 +39,25 @@ export default function HomePage() {
     }
   }, [globeLoaded]);
 
+  // Pause hero video when off-screen to free up GPU cycles for scrolling and the WebGL globe
+  useEffect(() => {
+    const video = document.querySelector('#hero video');
+    if (!video) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.01 });
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       {/* ── HERO SECTION ── */}
@@ -63,8 +82,8 @@ export default function HomePage() {
               <span className="line-3">&amp; Global Export House</span>
             </h1>
           </div>
-          
-          <p className="hero-sub" id="heroSub">
+
+          <p className="hero-sub" id="heroSub" style={{ display: 'none' }}>
             Direct-from-source procurement, strict compliance certification, and global logistics for premium Ayurvedic products, handcrafted textiles, and heritage artisanry.
           </p>
           
