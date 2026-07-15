@@ -531,7 +531,6 @@ p {
     rgba(42, 122, 110, 0.13) 0%,
     transparent 70%
   );
-  animation: orbDrift 22s ease-in-out infinite alternate;
 }
 .orb-gold {
   width: 550px; height: 550px;
@@ -541,7 +540,6 @@ p {
     rgba(201, 168, 76, 0.08) 0%,
     transparent 70%
   );
-  animation: orbDrift 28s ease-in-out infinite alternate-reverse;
 }
 .orb-crimson {
   width: 380px; height: 380px;
@@ -552,7 +550,6 @@ p {
     rgba(168, 50, 64, 0.06) 0%,
     transparent 70%
   );
-  animation: orbDrift 18s ease-in-out 4s infinite alternate;
 }
 @keyframes orbDrift {
   0%   { transform: translate(0, 0) scale(1); }

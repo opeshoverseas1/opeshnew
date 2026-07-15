@@ -1063,15 +1063,13 @@ body.light-theme .scroll-cue-track {
 
 /* Hero Section */
 body.light-theme #hero {
-  background: radial-gradient(ellipse at 50% 10%, #d0eaff 0%, #f0f8ff 100%) !important;
+  background: #f0f8ff !important;
 }
 body.light-theme #hero::before {
-  background:
-    linear-gradient(180deg, rgba(240, 248, 255, 0.32), transparent 32%, #f0f8ff),
-    linear-gradient(90deg, rgba(0, 122, 204, 0.04) 0 1px, transparent 1px),
-    linear-gradient(180deg, rgba(0, 122, 204, 0.03) 0 1px, transparent 1px) !important;
-  background-size: auto, 96px 96px, 96px 96px !important;
-  mask-image: linear-gradient(90deg, #000, rgba(0,0,0,0.68), transparent 88%) !important;
+  background: none !important;
+  background-size: auto !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
 }
 body.light-theme #hero::after {
   border-color: rgba(0, 122, 204, 0.18) !important;
@@ -1084,9 +1082,8 @@ body.light-theme .hero-badge {
 body.light-theme .hero-video-wrap::after {
   background: linear-gradient(
     180deg,
-    rgba(240, 248, 255, 0.0) 0%,
-    rgba(240, 248, 255, 0.1) 50%,
-    rgba(240, 248, 255, 0.6) 85%,
+    transparent 0%,
+    transparent 85%,
     #f0f8ff 100%
   ) !important;
   backdrop-filter: none !important;
@@ -1094,7 +1091,7 @@ body.light-theme .hero-video-wrap::after {
 }
 body.light-theme .hero-video-wrap video,
 body.light-theme.hero-dimmed .hero-video-wrap video {
-  filter: brightness(0.95) saturate(1.15) contrast(1.0) !important;
+  filter: brightness(0.88) saturate(1.25) contrast(1.08) !important;
 }
 body.light-theme .hero-video-fallback {
   background: linear-gradient(135deg, #d0eaff 0%, #f0f8ff 100%) !important;
@@ -1335,12 +1332,14 @@ body.light-theme .btn-primary svg path {
   stroke: #ffffff !important;
 }
 body.light-theme .btn-ghost {
-  border: 1px solid rgba(0, 122, 204, 0.25) !important;
-  color: var(--text-primary) !important;
+  border: 1px solid rgba(0, 122, 204, 0.35) !important;
+  color: #0a2e5c !important;
+  background: rgba(255, 255, 255, 0.6) !important;
 }
 body.light-theme .btn-ghost:hover {
-  border-color: var(--gold) !important;
-  color: var(--gold) !important;
+  border-color: #007acc !important;
+  color: #007acc !important;
+  background: rgba(255, 255, 255, 0.95) !important;
   box-shadow: 0 8px 28px rgba(0, 122, 204, 0.12) !important;
 }
 
@@ -1652,9 +1651,8 @@ body.light-theme #preloader {
 body.light-theme .hero-video-wrap::after {
   background: linear-gradient(
     180deg,
-    rgba(240, 248, 255, 0.0) 0%,
-    rgba(240, 248, 255, 0.1) 50%,
-    rgba(240, 248, 255, 0.6) 85%,
+    transparent 0%,
+    transparent 85%,
     #f0f8ff 100%
   ) !important;
   backdrop-filter: none !important;
@@ -1663,7 +1661,7 @@ body.light-theme .hero-video-wrap::after {
 
 body.light-theme .hero-video-wrap video,
 body.light-theme.hero-dimmed .hero-video-wrap video {
-  filter: brightness(0.95) saturate(1.15) contrast(1.0) !important;
+  filter: brightness(0.88) saturate(1.25) contrast(1.08) !important;
 }
 
 .hero-glass-card {
@@ -1681,41 +1679,63 @@ body.light-theme.hero-dimmed .hero-video-wrap video {
 }
 
 body.light-theme .hero-glass-card {
-  background: rgba(255, 255, 255, 0.3) !important;
-  backdrop-filter: blur(28px) saturate(1.8) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(1.8) !important;
-  border: 1px solid rgba(255, 255, 255, 0.5) !important;
-  border-radius: 28px !important;
-  padding: clamp(1.8rem, 4vw, 2.8rem) clamp(1.2rem, 3vw, 2rem) !important;
-  box-shadow: 
-    0 25px 50px rgba(10, 46, 92, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.45) !important;
-  margin-bottom: 2rem !important;
-  width: 100%;
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(20px) saturate(1.6) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  padding: clamp(1.2rem, 2.5vw, 1.8rem) clamp(1.5rem, 3.5vw, 2.8rem) !important;
+  box-shadow: 0 15px 35px rgba(0, 122, 204, 0.04) !important;
+  border-radius: 24px !important;
+  margin-bottom: 1.2rem !important;
+  width: 100% !important;
+  max-width: 720px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+body.light-theme .hero-glass-card .hero-h1 {
+  font-size: clamp(2rem, 4.5vw, 3.4rem) !important;
+  line-height: 1.08 !important;
+  margin-bottom: 0 !important;
+  color: #0a2e5c !important;
+}
+
+body.light-theme .hero-cats {
+  margin-top: 0.8rem !important;
+  margin-bottom: 2.2rem !important;
+}
+
+body.light-theme .hero-actions {
+  margin-top: 0 !important;
 }
 
 @media (max-width: 580px) {
   body.light-theme .hero-glass-card {
-    padding: 1.8rem 1.15rem !important;
-    border-radius: 20px !important;
+    padding: 1.2rem 1.4rem !important;
+    border-radius: 16px !important;
   }
 }
 
 body.light-theme .hero-cat-sep {
-  background: rgba(10, 46, 92, 0.15) !important;
+  display: none !important;
 }
 
 body.light-theme .hero-cat.ayurveda,
 body.light-theme .hero-cat.handicraft,
 body.light-theme .hero-cat.textile {
-  background: rgba(0, 122, 204, 0.06) !important;
-  border-color: rgba(0, 122, 204, 0.22) !important;
-  color: var(--gold) !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(0, 122, 204, 0.32) !important;
+  color: #0a2e5c !important;
+  box-shadow: 0 4px 15px rgba(0, 122, 204, 0.05) !important;
+  padding: 0.4rem 1.15rem !important;
 }
 body.light-theme .hero-cat.ayurveda .hero-cat-dot,
 body.light-theme .hero-cat.handicraft .hero-cat-dot,
 body.light-theme .hero-cat.textile .hero-cat-dot {
-  background: var(--gold) !important;
+  background: #007acc !important;
 }
 
 body.light-theme .stat-pill {
