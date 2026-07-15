@@ -20,6 +20,7 @@ let scene = null;
 let camera = null;
 let globe = null;
 let globeFrameId = null;
+let ambientLight = null, hemisphereLight = null, keyLight = null, rimLight = null, fillLight = null;
 let spinning = false;
 let globeState = { autoRotationY: 0 };
 const scrollOffset = { y: 0 };
@@ -336,14 +337,7 @@ export async function initHomeAnimations() {
     window.addEventListener('resize', chipsResize);
     homeResizeListeners.push({ event: 'resize', fn: chipsResize });
 
-    // Use ResizeObserver to dynamically position chips when globe size changes
-    if (window.ResizeObserver) {
-      const ro = new ResizeObserver(() => {
-        layoutChips();
-      });
-      ro.observe(globeEl);
-      homeObservers.push({ observer: ro, el: globeEl });
-    }
+    // We rely on the window resize listener below to layout chips, avoiding ResizeObserver layout thrashing during active scale animations.
   }
 
   /* ── 3. Pinned globe scene timeline ── */
@@ -364,20 +358,19 @@ export async function initHomeAnimations() {
       gsap.set('.gr-country', { opacity: 0, y: 12, scale: 0.92 });
       gsap.set('.gr-card', { opacity: 0, y: 70, scale: 0.88 });
 
-      // Entry ScrollTrigger
-      const entryTrigger = ScrollTrigger.create({
-        trigger: '#global-reach',
-        start: 'top bottom',
-        end: 'top top',
-        scrub: 0.5,
-        onUpdate: self => {
-          gsap.set('#grGlobe, #grOverlay', {
-            x: gsap.utils.interpolate(entryX, startX, self.progress),
-            opacity: self.progress
-          });
+      // Entry ScrollTrigger using optimized GSAP tween instead of custom JS onUpdate loop
+      const entryTrigger = gsap.to('#grGlobe, #grOverlay', {
+        x: startX,
+        opacity: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#global-reach',
+          start: 'top bottom',
+          end: 'top top',
+          scrub: 0.5
         }
       });
-      homeScrollTriggers.push(entryTrigger);
+      if (entryTrigger.scrollTrigger) homeScrollTriggers.push(entryTrigger.scrollTrigger);
 
       // Main pin timeline
       const tl = gsap.timeline({
@@ -509,12 +502,15 @@ export async function initHomeAnimations() {
   if (!reduced) {
     const heroVideo = document.querySelector('.hero-video-wrap video');
     if (heroVideo) {
+      // Disable video parallax scroll trigger to optimize scrolling speed and prevent lagging
+      /*
       const vParallax = gsap.to(heroVideo, {
         yPercent: 18,
         ease: 'none',
         scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1.2 }
       });
       if (vParallax.scrollTrigger) homeScrollTriggers.push(vParallax.scrollTrigger);
+      */
     }
 
     const heroContentAnim = gsap.to('#hero .hero-content', {
@@ -568,7 +564,7 @@ export async function initGlobeAnimation() {
 
   const size = Math.min(mount.clientWidth, mount.clientHeight) || 560;
 
-  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.0));
   renderer.setSize(size, size);
   renderer.setClearColor(0x000000, 0);
@@ -582,16 +578,23 @@ export async function initGlobeAnimation() {
   camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
   camera.position.z = 230;
 
-  scene.add(new THREE.AmbientLight(isLight ? 0xeef7ff : 0xd7e9ff, isLight ? 2.0 : 1.05));
-  scene.add(new THREE.HemisphereLight(isLight ? 0xffffff : 0xf3fbff, isLight ? 0xd0eaff : 0x172a42, isLight ? 2.5 : 1.55));
-  
-  const key = new THREE.DirectionalLight(0xffffff, isLight ? 3.5 : 2.9);
-  key.position.set(2.4, 1.7, 3.2); 
-  scene.add(key);
+  ambientLight = new THREE.AmbientLight(isLight ? 0xeef7ff : 0xd7e9ff, isLight ? 2.4 : 1.05);
+  scene.add(ambientLight);
 
-  const rim = new THREE.DirectionalLight(isLight ? 0xd0eaff : 0xf0d58a, isLight ? 2.0 : 1.05);
-  rim.position.set(-2.5, 0.4, 1.4); 
-  scene.add(rim);
+  hemisphereLight = new THREE.HemisphereLight(isLight ? 0xffffff : 0xf3fbff, isLight ? 0xd0eaff : 0x172a42, isLight ? 2.4 : 1.55);
+  scene.add(hemisphereLight);
+  
+  keyLight = new THREE.DirectionalLight(0xffffff, isLight ? 3.2 : 2.9);
+  keyLight.position.set(2.4, 1.7, 3.2); 
+  scene.add(keyLight);
+
+  rimLight = new THREE.DirectionalLight(isLight ? 0xd0eaff : 0xf0d58a, isLight ? 2.2 : 1.05);
+  rimLight.position.set(-2.5, 0.4, 1.4); 
+  scene.add(rimLight);
+
+  fillLight = new THREE.DirectionalLight(0xffffff, isLight ? 2.2 : 0.0);
+  fillLight.position.set(-2.4, -1.7, 3.2);
+  scene.add(fillLight);
 
   const arcs = Object.keys(COUNTRY_COORDS).map(name => {
     const c = COUNTRY_COORDS[name];
@@ -612,9 +615,10 @@ export async function initGlobeAnimation() {
 
   const rings = [{ lat: INDIA.lat, lng: INDIA.lng, maxR: 5, propagationSpeed: 2, repeatPeriod: 1400 }];
 
+  globe = new THREE.Object3D(); // fallback variable holder
   globe = new ThreeGlobe({ waitForGlobeReady: true, animateIn: false })
     .globeImageUrl(isLight 
-      ? '/assets/logos/globe/earth-blue-marble.webp'
+      ? '/assets/logos/globe/earth-blue-marble-web.jpg'
       : '/assets/logos/globe/earth-night.webp'
     )
     .bumpImageUrl('/assets/logos/globe/earth-topology.webp')
@@ -640,12 +644,12 @@ export async function initGlobeAnimation() {
 
   const gm = globe.globeMaterial();
   if (gm) {
-    gm.color = new THREE.Color(isLight ? '#ffffff' : '#0b1526');
-    gm.emissive = new THREE.Color(isLight ? '#5fa9ff' : '#050c18');
-    gm.emissiveIntensity = isLight ? 0.85 : 0.8;
-    gm.roughness = isLight ? 0.7 : 0.8;
-    gm.metalness = isLight ? 0.0 : 0.15;
-    gm.bumpScale = isLight ? 1.0 : 1.0;
+    gm.color = new THREE.Color(isLight ? '#c8e6fc' : '#0b1526');
+    gm.emissive = new THREE.Color(isLight ? '#000000' : '#050c18');
+    gm.emissiveIntensity = isLight ? 0.0 : 0.8;
+    gm.roughness = isLight ? 0.5 : 0.8;
+    gm.metalness = isLight ? 0.1 : 0.15;
+    gm.bumpScale = isLight ? 0.8 : 1.0;
   }
 
   scene.add(globe);
@@ -733,20 +737,41 @@ export function handleThemeChangeInGlobe() {
   
   // Update globe material and image dynamically
   globe.globeImageUrl(isLight 
-    ? '/assets/logos/globe/earth-blue-marble.webp' 
+    ? '/assets/logos/globe/earth-blue-marble-web.jpg' 
     : '/assets/logos/globe/earth-night.webp'
   );
 
   const gm = globe.globeMaterial();
   if (gm) {
-    gm.color.set(isLight ? '#ffffff' : '#0b1526');
-    gm.emissive.set(isLight ? '#5fa9ff' : '#050c18');
-    gm.emissiveIntensity = isLight ? 0.85 : 0.8;
-    gm.roughness = isLight ? 0.7 : 0.8;
-    gm.metalness = isLight ? 0.0 : 0.15;
-    gm.bumpScale = isLight ? 1.0 : 1.0;
+    gm.color.set(isLight ? '#c8e6fc' : '#0b1526');
+    gm.emissive.set(isLight ? '#000000' : '#050c18');
+    gm.emissiveIntensity = isLight ? 0.0 : 0.8;
+    gm.roughness = isLight ? 0.5 : 0.8;
+    gm.metalness = isLight ? 0.1 : 0.15;
+    gm.bumpScale = isLight ? 0.8 : 1.0;
   }
   
+  // Update light colors and intensities dynamically on theme switch
+  if (ambientLight) {
+    ambientLight.color.set(isLight ? 0xeef7ff : 0xd7e9ff);
+    ambientLight.intensity = isLight ? 2.4 : 1.05;
+  }
+  if (hemisphereLight) {
+    hemisphereLight.color.set(isLight ? 0xffffff : 0xf3fbff);
+    hemisphereLight.groundColor.set(isLight ? 0xd0eaff : 0x172a42);
+    hemisphereLight.intensity = isLight ? 2.4 : 1.55;
+  }
+  if (keyLight) {
+    keyLight.intensity = isLight ? 3.2 : 2.9;
+  }
+  if (rimLight) {
+    rimLight.color.set(isLight ? 0xd0eaff : 0xf0d58a);
+    rimLight.intensity = isLight ? 2.2 : 1.05;
+  }
+  if (fillLight) {
+    fillLight.intensity = isLight ? 2.2 : 0.0;
+  }
+
   // Update atmosphere
   globe.atmosphereColor(brandColor);
   
@@ -766,24 +791,9 @@ export function handleThemeChangeInGlobe() {
   
   globe.ringColor(() => t => isLight ? `rgba(0,122,204,${1 - t})` : `rgba(201,161,74,${1 - t})`);
   
-  // Update light colors in scene
+  // Update halo mesh color dynamically
   scene.traverse(node => {
-    if (node instanceof THREE.AmbientLight) {
-      node.color.set(isLight ? 0xeef7ff : 0xd7e9ff);
-      node.intensity = isLight ? 2.0 : 1.05;
-    } else if (node instanceof THREE.HemisphereLight) {
-      node.color.set(isLight ? 0xffffff : 0xf3fbff);
-      node.groundColor.set(isLight ? 0xd0eaff : 0x172a42);
-      node.intensity = isLight ? 2.5 : 1.55;
-    } else if (node instanceof THREE.DirectionalLight) {
-      if (node.position.x < 0) { // Rim light
-        node.color.set(isLight ? 0xd0eaff : 0xf0d58a);
-        node.intensity = isLight ? 2.0 : 1.05;
-      } else { // Key light
-        node.intensity = isLight ? 3.5 : 2.9;
-      }
-    } else if (node instanceof THREE.Mesh && node.geometry instanceof THREE.SphereGeometry && node.geometry.parameters.radius === 116) {
-      // Halo mesh
+    if (node instanceof THREE.Mesh && node.geometry instanceof THREE.SphereGeometry && node.geometry.parameters.radius === 116) {
       node.material.color.set(isLight ? 0xd0eaff : 0xd9c273);
     }
   });
@@ -923,41 +933,7 @@ export function initPageAnimations() {
     }
   });
 
-  // 3. Consolidated 3D Tilt Hover (cards)
-  if (!reduced && window.innerWidth >= 800) {
-    document.querySelectorAll('.stat-block, .pillar-card, .cert-card, .gr-card, .product-card, .compliance-card, .logistics-card').forEach(card => {
-      let rect = null;
-      card.addEventListener('pointerenter', () => {
-        rect = card.getBoundingClientRect();
-      });
-      card.addEventListener('pointermove', event => {
-        if (!rect) rect = card.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width  - 0.5;
-        const y = (event.clientY - rect.top)  / rect.height - 0.5;
-        
-        gsap.to(card, {
-          rotateY: x * 8,
-          rotateX: -y * 8,
-          translateY: -5,
-          transformPerspective: 800,
-          duration: 0.3,
-          ease: 'power1.out',
-          overwrite: 'auto'
-        });
-      });
-      card.addEventListener('pointerleave', () => {
-        rect = null;
-        gsap.to(card, {
-          rotateY: 0,
-          rotateX: 0,
-          translateY: 0,
-          duration: 0.45,
-          ease: 'power2.out',
-          overwrite: 'auto'
-        });
-      });
-    });
-  }
+  // 3. Consolidated 3D Tilt Hover is disabled to prevent cursor/hover jank. Cards use native, hardware-accelerated CSS hover transitions.
 
   // 4. Reveal Fade-out on scrolling past top
   if (window.IntersectionObserver) {
